@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Bridge</string>
     <string name="title_profile">Profile</string>
-    <string name="title_bubbles">Select</string>
+    <string name="title_bubbles">Home</string>
     <string name="title_chat">Chat</string>
+    <string name="bubbles_text">I AM BUBBLES</string>
+    <string name="chatlist_text">Pick a chat</string>
+    <string name="title_activity_hi">hi</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
