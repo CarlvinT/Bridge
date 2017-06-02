@@ -19,7 +19,8 @@
             android:id="@+id/CentreBubble"
             android:layout_width="183dp"
             android:layout_height="197dp"
-            android:background="@android:color/white"
+            android:contentDescription="@string/centre_bubble_description"
+            android:background="?android:attr/colorBackground"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -30,17 +31,18 @@
 
         <TextView
             android:id="@+id/UserName"
+            fontPath="fonts/DeValencia.otf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            fontPath="fonts/DeValencia.otf"
-            tools:ignore="MissingPrefix"
+            android:text="@string/username"
+            android:textAlignment="center"
+            android:textColor="?android:attr/colorBackground"
+            android:textSize="48sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingPrefix" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>

@@ -9,4 +9,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="username">Ben</string>
+    <string name="centre_bubble_description">Bubble representing the user</string>
 </resources>
