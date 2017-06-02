@@ -32,8 +32,8 @@
         <TextView
             android:id="@+id/UserName"
             fontPath="fonts/DeValencia.otf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:text="@string/username"
             android:textAlignment="center"
             android:textColor="?android:attr/colorBackground"
