@@ -82,7 +82,6 @@ public class BubblesFragment extends Fragment {
             pick_btn.setLayoutParams(bblDimens);
             pick_btn.setImageResource(R.drawable.pick_bubble);
             pick_btn.setScaleType(ImageButton.ScaleType.FIT_CENTER);
-
             container.addView(pick_btn);
         }
 
