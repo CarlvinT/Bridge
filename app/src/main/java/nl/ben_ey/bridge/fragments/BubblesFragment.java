@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.LinkedList;
@@ -26,6 +27,7 @@ public class BubblesFragment extends Fragment {
 
     Activity referenceActivity;
     View parentHolder;
+    private int counter;
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
@@ -66,6 +68,22 @@ public class BubblesFragment extends Fragment {
         // Print all the names
         for (Name n : names) {
             System.out.println(n.getName() + " heet: " + n.getName());
+        }
+
+        // Programmatically create imageview
+        counter = 0;
+        LinearLayout.LayoutParams bblDimens = new LinearLayout.LayoutParams(120, 120);
+
+        for (Name n : names) {
+            counter++;
+            ImageButton pick_btn = new ImageButton(referenceActivity);
+
+            pick_btn.setId(counter);
+            pick_btn.setLayoutParams(bblDimens);
+            pick_btn.setImageResource(R.drawable.pick_bubble);
+            pick_btn.setScaleType(ImageButton.ScaleType.FIT_CENTER);
+
+            container.addView(pick_btn);
         }
 
         // Return the inflated layout

@@ -10,8 +10,10 @@
         android:id="@+id/pick_button_container_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="33dp">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent">
 
         <ImageButton
             android:id="@+id/pick_button_1"
@@ -59,8 +61,8 @@
 
         <ImageButton
             android:id="@+id/CentreBubble"
-            android:layout_width="183dp"
-            android:layout_height="197dp"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:background="?android:attr/colorBackground"
             android:contentDescription="@string/centre_bubble_description"
             android:scaleType="fitCenter"
