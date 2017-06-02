@@ -35,6 +35,8 @@
             android:text="TextView"
             android:textColor="@android:color/white"
             android:textSize="24sp"
+            fontPath="fonts/DeValencia.otf"
+            tools:ignore="MissingPrefix"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

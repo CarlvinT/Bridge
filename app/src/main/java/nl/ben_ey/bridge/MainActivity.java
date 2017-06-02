@@ -1,5 +1,6 @@
 package nl.ben_ey.bridge;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,8 @@ import android.view.MenuItem;
 import nl.ben_ey.bridge.fragments.BubblesFragment;
 import nl.ben_ey.bridge.fragments.ChatFragment;
 import nl.ben_ey.bridge.fragments.ProfileFragment;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,5 +58,17 @@ public class MainActivity extends AppCompatActivity {
         // Set up the switching between fragments via the bottom navigation
         BottomNavigationView bNavigation = (BottomNavigationView) findViewById(R.id.navigation);
         bNavigation.setOnNavigationItemSelectedListener(bottomNavigationListener);
+
+        // Set up font
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                                        .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                                        .setFontAttrId(R.attr.fontPath)
+                                        .build()
+        );
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
