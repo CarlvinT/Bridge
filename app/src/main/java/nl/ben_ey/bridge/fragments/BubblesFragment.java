@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import java.util.LinkedList;
@@ -33,7 +33,7 @@ public class BubblesFragment extends Fragment {
     //BubblePicker picker = new BubblePicker(referenceActivity);
 
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
 
         // Set the reference activity and inflate the layout for this fragment
         referenceActivity = getActivity();
@@ -68,34 +68,152 @@ public class BubblesFragment extends Fragment {
         names.add(new Name("Car"));
         names.add(new Name("Vroem Vroem"));
 
-        // Print all the names
-        for (Name n : names) {
-            System.out.println(n.getName() + " heet: " + n.getName());
-        }
-
-        // Add button at random position
-        RelativeLayout mBubblesContainer =
+        RelativeLayout pickBubbleContainer =
                 (RelativeLayout) parentHolder.findViewById(R.id.bubbles_container);
 
-        Button mNewButton = new Button(referenceActivity);
-        DisplayMetrics metrics = new DisplayMetrics();
-        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
-                                                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                                                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        rlp.leftMargin = new Random().nextInt(metrics.widthPixels - mNewButton.getWidth());
-        rlp.topMargin = new Random().nextInt(metrics.heightPixels - 2*mNewButton.getHeight());
-        mNewButton.setLayoutParams(rlp);
-
-        mNewButton.setText("I am a button");
-        mNewButton.setId(22);
-
-        mBubblesContainer.addView(mNewButton);
+        // For every name create an image bubble
+        for (Name n : names) {
+            imgViewEngine(n.getName(), pickBubbleContainer, inflater);
+        }
 
         // Return the inflated layout
         return parentHolder;
+
+    }
+
+
+    // Pseudo:
+    // When placing an element, record the element's position,
+    // when placing the next element, go through the array of positions
+    // checking the current element's position against every other position.
+    // If this element's position is either within positive or negative range
+    // of (another element's position + or - half of that element's width/height)
+    // restart,
+
+    public void imgViewEngine(String name, RelativeLayout pickBubblesContainer,
+                              LayoutInflater inflater) {
+
+        // Create the image button and establish the size of the display
+        ImageButton mPickImage = new ImageButton(referenceActivity);
+        DisplayMetrics metrics = new DisplayMetrics();
+        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        // Make the imagebutton 250dp x 250dp in size
+        RelativeLayout.LayoutParams larp = new RelativeLayout.LayoutParams(250, 250);
+
+        // Randomize the top and left margin of the image button to place it randomly
+        // on the screen
+        larp.leftMargin = mPickImage.getWidth()
+                + new Random().nextInt(metrics.widthPixels - 2 * mPickImage.getWidth());
+        larp.topMargin = mPickImage.getHeight()
+                + new Random().nextInt(metrics.heightPixels - 3 * mPickImage.getHeight());
+        mPickImage.setLayoutParams(larp);
+
+        System.out.println("Left margin " + larp.leftMargin);
+        System.out.println("Top margin " + larp.leftMargin);
+
+
+        // Set the image for the image button
+        mPickImage.setImageResource(R.drawable.pick_bubble);
+
+        // Set the background the same as the rest of the app
+        mPickImage.setBackgroundColor(getResources().getColor(R.color.btnBackground));
+
+        // Set the scaletype to fit_centre to prevent the image from being cut of
+        mPickImage.setScaleType(ImageButton.ScaleType.FIT_CENTER);
+
+        // Add the image to the container
+        pickBubblesContainer.addView(mPickImage);
+
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public void buttonEngine(String name){
+//        // Add button at random position
+//        RelativeLayout mBubblesContainer =
+//                (RelativeLayout) parentHolder.findViewById(R.id.bubbles_container);
+//
+//        Button mNewButton = new Button(referenceActivity);
+//        DisplayMetrics metrics = new DisplayMetrics();
+//        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//
+//        RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//        rlp.leftMargin = new Random().nextInt((metrics.widthPixels - mNewButton.getWidth()) - 50);
+//        rlp.topMargin = new Random().nextInt((metrics.heightPixels - 2*mNewButton.getHeight()) - 50);
+//        mNewButton.setLayoutParams(rlp);
+//
+//        mNewButton.setText(name);
+//        mNewButton.setId(22);
+//
+//        mBubblesContainer.addView(mNewButton);
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
