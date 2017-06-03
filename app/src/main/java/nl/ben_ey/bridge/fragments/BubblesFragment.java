@@ -26,7 +26,9 @@ public class BubblesFragment extends Fragment {
 
     Activity referenceActivity;
     View parentHolder;
+
     private int counter;
+    //BubblePicker picker = new BubblePicker(referenceActivity);
 
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
@@ -69,9 +71,12 @@ public class BubblesFragment extends Fragment {
             System.out.println(n.getName() + " heet: " + n.getName());
         }
 
+        // Add image at random position
+
+
         // Return the inflated layout
         return parentHolder;
 
-
     }
+
 }

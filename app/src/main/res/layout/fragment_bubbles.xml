@@ -7,18 +7,30 @@
     android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/bubble_picker_test"
+        android:layout_width="124dp"
+        android:layout_height="115dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintVertical_bias="0.046">
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/pick_button_container_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent">
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/pick_button_1"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
             android:background="?android:attr/colorBackground"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -53,11 +65,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintVertical_bias="0.501"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp">
+        app:layout_constraintVertical_bias="0.501">
 
         <ImageButton
             android:id="@+id/CentreBubble"
@@ -74,7 +82,9 @@
             android:layout_marginLeft="32dp"
             android:layout_marginBottom="32dp"
             android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp" />
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" />
 
         <TextView
             android:id="@+id/UserName"
@@ -91,7 +101,9 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingPrefix"
             android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp" />
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
