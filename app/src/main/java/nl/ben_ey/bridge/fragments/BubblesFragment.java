@@ -101,6 +101,7 @@ public class BubblesFragment extends Fragment {
         // Make the imagebutton 250dp x 250dp in size
         RelativeLayout.LayoutParams larp = new RelativeLayout.LayoutParams(250, 250);
 
+
         // Randomize the top and left margin of the image button to place it randomly
         // on the screen
         larp.leftMargin = mPickImage.getWidth()
