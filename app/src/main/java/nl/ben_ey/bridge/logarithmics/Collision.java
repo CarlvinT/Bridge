@@ -19,37 +19,82 @@ public class Collision {
     private int leftMargin;
 
     public Collision(ArrayList<Bubble> bubbles, Bubble pick_item){
-        this.bubbles = bubbles; // de huidige bubbel
-        this.pick_item = pick_item; // de lijst met al bestaande bubbels
+        this.bubbles = bubbles; // de lijst met al bestaande bubbels
+        this.pick_item = pick_item; // de huidige bubbel
     }
 
 
     public boolean checkOverlap(){
 
         for( Bubble b : bubbles ){
-            //waarom maken al die relative dingen het zo overbodig lastig... ;x?
+            // @@@ - Conversation - @@@
+            // waarom maken al die relative dingen het zo overbodig lastig... ;x?
             // omdat android kut is, net als java
             // heb geprobeert met andere layouts, dit is de enige waarin het mogelijk is,
             // om de positie te forceren, k
+            // @@@ - Conversation - @@@
 
-            b.getlPars().get
+            // Get the margins of the next bubble in the list
+            int listBblMarginTop = b.getTopMargin();
+            int listBblMarginLeft = b.getLeftMargin();
 
-            //als jij vind hoe je left, right enz berekent, zijn we klaar (yay)
-            // wat betekent left rigth enzo hier? borders
-            Rect R1=new Rect(b.getLeft(), b.getTop(), b.getRight(), b.getBottom());
-            Rect R2=new Rect(pick_item.getLeft(), pick_item.getTop(), pick_item.getRight(), pick_item.getBottom());
-            if (R1.intersect(R2)) {
+            // Get the margins of the current item
+            int pickItemMarginTop = pick_item.getTopMargin();
+            int pickItemMarginLeft = pick_item.getLeftMargin();
+
+            // Set the four corner coordinates of the next bubble in the list
+            int bLeft = b.getLeftMargin();
+            int bTop = b.getTopMargin();
+            int bRight = b.getLeftMargin() + b.getWidth();
+            int bBottom = b.getTopMargin() + b.getHeight();
+
+            // Set the four corner coordinates of the current item
+            int piLeft = pick_item.getLeftMargin();
+            int piTop = pick_item.getTopMargin();
+            int piRight = pick_item.getLeftMargin() + pick_item.getWidth();
+            int piBottom = pick_item.getTopMargin() + pick_item.getHeight();
+
+            // Now we have a rectangle of the next bubble in the list
+            Rect bRect = new Rect(bLeft, bTop, bRight, bBottom);
+
+            // Now we have a rectangle of the current item
+            Rect piRect = new Rect(piLeft, piTop, piRight, piBottom);
+
+            if (piRect.intersect(bRect)) {
+                System.out.println("Warning! Intercourse");
                 return false;
             }
+
+
+
+
+
+
+
+//            System.out.println(
+//                    " Left " + left +
+//                    " Top " + top +
+//                    " Right" + right +
+//                    " Bottom " + bottom +
+//                    " Naam " + b.getNameApplied()
+//            );
+
+
+//            // @@@ - Conversation - @@@
+//            //als jij vind hoe je left, right enz berekent, zijn we klaar (yay)
+//            // wat betekent left rigth enzo hier? borders
+              // @@@ - Conversation - @@@
+//            Rect R1=new Rect(b.getLeft(), b.getTop(), b.getRight(), b.getBottom());
+//            Rect R2=new Rect(pick_item.getLeft(), pick_item.getTop(), pick_item.getRight(), pick_item.getBottom());
+//            if (R1.intersect(R2)) {
+//                return false;
+//            }
 
 
         }
 
         return true;
     }
-
-
-
 
     public ArrayList<Bubble> getBubbles() {
         return bubbles;
