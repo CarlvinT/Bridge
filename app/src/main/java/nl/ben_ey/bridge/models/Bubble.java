@@ -1,5 +1,7 @@
 package nl.ben_ey.bridge.models;
 
+import android.widget.RelativeLayout;
+
 /**
  * Created by Ben on 6-6-2017.
  */
@@ -10,12 +12,17 @@ public class Bubble {
     private int width;
     private int height;
     private String nameApplied;
+    private RelativeLayout.LayoutParams lPars;
 
-    public Bubble(int topMargin, int leftMargin, int width, int height, String nameApplied){
+
+
+    public Bubble(int topMargin, int leftMargin, int width, int height, String nameApplied, RelativeLayout.LayoutParams lpars){
         this.topMargin = topMargin;
         this.leftMargin = leftMargin;
         this.width = width;
         this.height = height;
+        this.lPars = lpars;
+
 
         this.nameApplied = nameApplied;
     }
@@ -58,5 +65,13 @@ public class Bubble {
 
     public void setNameApplied(String nameApplied) {
         this.nameApplied = nameApplied;
+    }
+
+    public RelativeLayout.LayoutParams getlPars() {
+        return lPars;
+    }
+
+    public void setlPars(RelativeLayout.LayoutParams lPars) {
+        this.lPars = lPars;
     }
 }

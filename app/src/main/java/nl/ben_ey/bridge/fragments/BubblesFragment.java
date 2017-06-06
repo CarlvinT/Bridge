@@ -87,7 +87,7 @@ public class BubblesFragment extends Fragment {
 
         // For every name create an image bubble
         for (Name n : names){
-            imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater);
+            imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, 0);
         }
 
         // Return the inflated layout
@@ -96,7 +96,7 @@ public class BubblesFragment extends Fragment {
 
 
     public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
-                              RelativeLayout rootContainer, LayoutInflater inflater) {
+                              RelativeLayout rootContainer, LayoutInflater inflater, int try_count) {
 
         // Create the layout from file (inflate it)
         RelativeLayout pick_btn_container = (RelativeLayout)
@@ -128,6 +128,8 @@ public class BubblesFragment extends Fragment {
         Random randMargin = new Random();
 
         // Create a new layout param for the bubble
+        // het moet op de layoutparams, dus pickbtncontainerlayout in dit geval. dat zijn ook de rode vlakken hier
+
         RelativeLayout.LayoutParams pick_btn_container_layout = new RelativeLayout.LayoutParams(
                                                         RelativeLayout.LayoutParams.WRAP_CONTENT,
                                                         RelativeLayout.LayoutParams.WRAP_CONTENT );
@@ -148,35 +150,50 @@ public class BubblesFragment extends Fragment {
                                         pick_btn_container_layout.leftMargin,
                                         bubbleWidth,
                                         bubbleHeight,
-                                        n.getName()
+                                        n.getName(),
+                                        pick_btn_container_layout
                                 );
 
 
         // Run through the list to check for colissions
-       // pick_items.add(pickItem);
-//test m nu eens,.... want de 1e zou nooit collision moeten hebben als je lijst leeg is... want dan is er niks om over te loopen en returnt hij direct true...
-        //dus dit moet het issue zijn geweest
-// het is OF dit of algo...
-        pick_items.add(pickItem);
 
-        // Call the collision class, check if there's no overlap
+        //test m nu eens,.... want de 1e zou nooit collision moten he
+        // Call the collision class, check if therimgViewEe's no overlap
         //en dit is dus altijd true?. Ik run m ff dan zie je. elk item heeft overlap, zonder uitzondering
         Collision collision = new Collision(pick_items, pickItem);
 
+
+        //done, anyway.... jouw collisionscode is gebaseerd op vierkanten, niet op cirkels.... ;x
+        // nee dat klopt ook, want de containers waar zowel het tekstvak als de image in zitten zijn
+        // vierkant =p
+
+
         if (!collision.checkOverlap()) {
             System.out.println("There's overlap for " + n.getName());
+
+            //ik kan het resultaat niet zien, maar dit zou moeten voldoen?
+            // kan wel. virtual device zit hierachter
+
+            if (try_count > 100) {
+                System.err.println("fuck this shit, no circle for you.");
+                return;
+            }
+            // ik denk dat ie alle bubbles opnieuw plaatst wanneer je deze aanroept
+            // dat sws niet
+            // waar is je logvenster?
+            // hiero
+
+            imgViewEngine(n,mDisplay,pick_items,rootContainer, inflater, try_count + 1);
+            return;
+
         } else {
             System.out.println("There's no overlap for " + n.getName());
         }
 
-        //pas toevoegen aan de list na collision check met bestaande, probeer nu eens
-
+        pick_items.add(pickItem);
 
         // Finished, add the view to the container
         rootContainer.addView(pick_btn_container);
-
-        // op me phone naast me staat 'carlv' vrj an ales. toch staat hier dat ie overlap heeft
-
 
     }
 }
