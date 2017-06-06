@@ -153,9 +153,14 @@ public class BubblesFragment extends Fragment {
 
 
         // Run through the list to check for colissions
+       // pick_items.add(pickItem);
+//test m nu eens,.... want de 1e zou nooit collision moeten hebben als je lijst leeg is... want dan is er niks om over te loopen en returnt hij direct true...
+        //dus dit moet het issue zijn geweest
+// het is OF dit of algo...
         pick_items.add(pickItem);
 
         // Call the collision class, check if there's no overlap
+        //en dit is dus altijd true?. Ik run m ff dan zie je. elk item heeft overlap, zonder uitzondering
         Collision collision = new Collision(pick_items, pickItem);
 
         if (!collision.checkOverlap()) {
@@ -164,8 +169,14 @@ public class BubblesFragment extends Fragment {
             System.out.println("There's no overlap for " + n.getName());
         }
 
+        //pas toevoegen aan de list na collision check met bestaande, probeer nu eens
+
+
         // Finished, add the view to the container
         rootContainer.addView(pick_btn_container);
+
+        // op me phone naast me staat 'carlv' vrj an ales. toch staat hier dat ie overlap heeft
+
 
     }
 }
