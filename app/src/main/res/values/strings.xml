@@ -11,4 +11,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="username">Ben</string>
     <string name="centre_bubble_description">Bubble representing the user</string>
+    <string name="pick_bubble_description">Bubble representing another user</string>
 </resources>

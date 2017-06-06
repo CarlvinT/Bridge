@@ -5,13 +5,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent">
-
-
-    </RelativeLayout>
-
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="120dp"
@@ -20,7 +13,8 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/pick_bubble"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/pick_bubble_description" />
 
     <TextView
         android:id="@+id/user_name"

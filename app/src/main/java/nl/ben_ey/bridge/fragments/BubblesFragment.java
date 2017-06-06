@@ -70,25 +70,44 @@ public class BubblesFragment extends Fragment {
         names.add(new Name("Vroem Vroem"));
 
         // Create one container that will be used in each pick-button
-        RelativeLayout pickBubbleContainer =
+        RelativeLayout rootContainer =
                 (RelativeLayout) parentHolder.findViewById(R.id.bubbles_container);
 
         // For every name create an image bubble
         for (Name n : names){
-            imgViewEngine(names, pickBubbleContainer, inflater);
+            imgViewEngine(n, rootContainer, inflater);
         }
 
-        // Return the inflat//ed layout
-        return parentHolder; //
+        // Return the inflated layout
+        return parentHolder;
     }
 
-    public void imgViewEngine(List<Name> names, RelativeLayout pickBubblesContainer,
+    public void imgViewEngine(Name n, RelativeLayout rootContainer,
                               LayoutInflater inflater) {
 
+        // Create a container for this item
+        RelativeLayout pickBblContainer = new RelativeLayout(referenceActivity);
+
+        // Create Layout parameters for the textview
+        RelativeLayout.LayoutParams userNamePars = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        // Add the layout parameters to the textView
+        pickBblContainer.setLayoutParams(userNamePars);
 
 
+        // Create a textview
+        TextView userName = new TextView(referenceActivity);
 
+        // Set text in the textview
+        userName.setText("Hello!");
 
+        // Add the contents to the pick bubble container
+        pickBblContainer.addView(userName);
+
+        // Add the pick bubble container to the root layout
+        rootContainer.addView(pickBblContainer);
     }
 }
 
