@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,8 +145,9 @@ public class BubblesFragment extends Fragment {
         // Set the margins
         // min = 0
         // max = display size minus widget size
+        // @@ToDo Make sure 56dp is translated to pixels and repaplaces '100' in topmargin
         pick_btn_container_layout.leftMargin = randMargin.nextInt((displayWidth - bubbleWidth) + 1);
-        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 200) - bubbleHeight) + 1);
+        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 100) - bubbleHeight) + 1);
 
         // Apply the new layout
         pick_btn_container.setLayoutParams(pick_btn_container_layout);
@@ -162,23 +164,21 @@ public class BubblesFragment extends Fragment {
                                 );
 
 
-        // Run through the list to check for colissions
+        // Create an instance of the collision class
         Collision collision = new Collision(pick_items, pickItem);
 
-
+        // If a colission is detected it get's logged and the bubble will be placed
+        // elsewhere
         if (!collision.checkOverlap()) {
-            System.out.println("There's overlap for " + n.getName());
 
-            if (try_count > 100) {
-                System.err.println("fuck this shit, no circle for you.");
+            Log.wtf("There's overlap for ", n.getName());
+            if (try_count < 100) {
+                imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, try_count + 1);
+                return;
+            } else {
+                Log.wtf("Too many faulty placements. This bubble won't be placed: ", n.getName());
                 return;
             }
-
-            imgViewEngine(n,mDisplay,pick_items,rootContainer, inflater, try_count + 1);
-            return;
-
-        } else {
-            System.out.println("There's no overlap for " + n.getName());
         }
 
         // Add this bubble to the list of already existing bubbles
