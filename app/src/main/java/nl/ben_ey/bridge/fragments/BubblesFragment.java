@@ -145,7 +145,7 @@ public class BubblesFragment extends Fragment {
         // min = 0
         // max = display size minus widget size
         pick_btn_container_layout.leftMargin = randMargin.nextInt((displayWidth - bubbleWidth) + 1);
-        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 56) - bubbleHeight) + 1);
+        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 200) - bubbleHeight) + 1);
 
         // Apply the new layout
         pick_btn_container.setLayoutParams(pick_btn_container_layout);
@@ -163,40 +163,16 @@ public class BubblesFragment extends Fragment {
 
 
         // Run through the list to check for colissions
-
-        // @@@ - Conversation - @@@
-        // test m nu eens,.... want de 1e zou nooit collision moten he
-        // Call the collision class, check if therimgViewEe's no overlap
-        // en dit is dus altijd true?. Ik run m ff dan zie je. elk item heeft overlap, zonder uitzondering
-        // @@@ - Conversation - @@@
         Collision collision = new Collision(pick_items, pickItem);
-
-
-        // @@@ - Conversation - @@@
-        // done, anyway.... jouw collisionscode is gebaseerd op vierkanten, niet op cirkels.... ;x
-        // nee dat klopt ook, want de containers waar zowel het tekstvak als de image in zitten zijn
-        // vierkant =p
-        // @@@ - Conversation - @@@
 
 
         if (!collision.checkOverlap()) {
             System.out.println("There's overlap for " + n.getName());
 
-            // @@@ - Conversation - @@@
-            //ik kan het resultaat niet zien, maar dit zou moeten voldoen?
-            // kan wel. virtual device zit hierachter
-            // @@@ - Conversation - @@@
-
             if (try_count > 100) {
                 System.err.println("fuck this shit, no circle for you.");
                 return;
             }
-            // @@@ - Conversation - @@@
-            // ik denk dat ie alle bubbles opnieuw plaatst wanneer je deze aanroept
-            // dat sws niet
-            // waar is je logvenster?
-            // hiero
-            // @@@ Conversation - @@@
 
             imgViewEngine(n,mDisplay,pick_items,rootContainer, inflater, try_count + 1);
             return;

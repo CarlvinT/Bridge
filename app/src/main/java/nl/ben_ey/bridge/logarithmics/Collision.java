@@ -34,6 +34,7 @@ public class Collision {
             // om de positie te forceren, k
             // @@@ - Conversation - @@@
 
+
             // Get the margins of the next bubble in the list
             int listBblMarginTop = b.getTopMargin();
             int listBblMarginLeft = b.getLeftMargin();
