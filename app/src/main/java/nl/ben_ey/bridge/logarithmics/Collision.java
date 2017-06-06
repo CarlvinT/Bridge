@@ -65,32 +65,10 @@ public class Collision {
                 return false;
             }
 
-
-
-
-
-
-
-//            System.out.println(
-//                    " Left " + left +
-//                    " Top " + top +
-//                    " Right" + right +
-//                    " Bottom " + bottom +
-//                    " Naam " + b.getNameApplied()
-//            );
-
-
-//            // @@@ - Conversation - @@@
-//            //als jij vind hoe je left, right enz berekent, zijn we klaar (yay)
-//            // wat betekent left rigth enzo hier? borders
-              // @@@ - Conversation - @@@
-//            Rect R1=new Rect(b.getLeft(), b.getTop(), b.getRight(), b.getBottom());
-//            Rect R2=new Rect(pick_item.getLeft(), pick_item.getTop(), pick_item.getRight(), pick_item.getBottom());
-//            if (R1.intersect(R2)) {
-//                return false;
-//            }
-
-
+            // @@@ - Conversation - @@@
+            // als jij vind hoe je left, right enz berekent, zijn we klaar (yay)
+            // wat betekent left rigth enzo hier? borders
+            // @@@ - Conversation - @@@
         }
 
         return true;

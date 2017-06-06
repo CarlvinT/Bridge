@@ -72,6 +72,11 @@ public class BubblesFragment extends Fragment {
         names.add(new Name("Carlv"));
         names.add(new Name("Carl"));
         names.add(new Name("Car"));
+        names.add(new Name("Car"));
+        names.add(new Name("Car"));
+        names.add(new Name("Car"));
+        names.add(new Name("Car"));
+        names.add(new Name("Car"));
         names.add(new Name("Vroem"));
 
         // Create one container that will be used in each pick-button
@@ -168,7 +173,7 @@ public class BubblesFragment extends Fragment {
 
 
         // @@@ - Conversation - @@@
-        //done, anyway.... jouw collisionscode is gebaseerd op vierkanten, niet op cirkels.... ;x
+        // done, anyway.... jouw collisionscode is gebaseerd op vierkanten, niet op cirkels.... ;x
         // nee dat klopt ook, want de containers waar zowel het tekstvak als de image in zitten zijn
         // vierkant =p
         // @@@ - Conversation - @@@
