@@ -65,8 +65,10 @@ public class BubblesFragment extends Fragment {
                                                         RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         // Create the margins
-        centreBtnPars.leftMargin = (mDisplay.widthPixels / 4);
-        centreBtnPars.topMargin = (mDisplay.heightPixels / 4);
+        centreBtnPars.leftMargin =
+                (mDisplay.widthPixels / 2) - (centreBtnContainer.getMeasuredWidth() / 2);
+        centreBtnPars.topMargin =
+                (mDisplay.heightPixels / 2) - (centreBtnContainer.getMeasuredHeight() / 2);
 
         // Apply said margins
         centreBtnContainer.setLayoutParams(centreBtnPars);

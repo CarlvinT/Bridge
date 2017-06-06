@@ -47,7 +47,7 @@ public class Collision {
         this.ctrRight = centreBubble.getLeftMargin() + centreBubble.getWidth();
         this.ctrBottom = centreBubble.getTopMargin() + centreBubble.getHeight();
 
-        System.out.println(this.ctrLeft+this.ctrTop+this.ctrRight+this.ctrBottom);
+        //System.out.println(this.ctrLeft+this.ctrTop+this.ctrRight+this.ctrBottom);
 
         // Now we have a rectangle of the centre bubble
         this.ctrRect = new Rect(ctrLeft, ctrTop, ctrRight, ctrBottom);
@@ -67,9 +67,7 @@ public class Collision {
 
             // If the current item either intersects with another one
             // or with the centre button it get's placed elsewhere
-            if (ctrRect.intersect(bRect)) {
-                return false;
-            } else if (piRect.intersect(bRect)) {
+            if (ctrRect.intersect(bRect) || piRect.intersect(bRect)) {
                 return false;
             }
 
