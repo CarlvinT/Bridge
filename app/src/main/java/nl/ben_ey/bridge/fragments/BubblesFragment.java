@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,15 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
+import nl.ben_ey.bridge.logarithmics.Collision;
+import nl.ben_ey.bridge.models.Bubble;
 import nl.ben_ey.bridge.models.Name;
 
 /**
@@ -73,21 +78,37 @@ public class BubblesFragment extends Fragment {
         RelativeLayout rootContainer =
                 (RelativeLayout) parentHolder.findViewById(R.id.bubbles_container);
 
+        // Get the display size
+        DisplayMetrics mDisplay = new DisplayMetrics();
+        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(mDisplay);
+
+        // Create an arraylist of the pick-items
+        ArrayList<Bubble> pick_items = new ArrayList<Bubble>();
+
         // For every name create an image bubble
         for (Name n : names){
-            imgViewEngine(n, rootContainer, inflater);
+            imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater);
         }
 
         // Return the inflated layout
         return parentHolder;
     }
 
-    public void imgViewEngine(Name n, RelativeLayout rootContainer,
-                              LayoutInflater inflater) {
+
+    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
+                              RelativeLayout rootContainer, LayoutInflater inflater) {
 
         // Create the layout from file (inflate it)
         RelativeLayout pick_btn_container = (RelativeLayout)
                 inflater.inflate(R.layout.pick_button, rootContainer, false);
+
+        // Get the display size
+        int displayWidth = mDisplay.widthPixels;
+        int displayHeight = mDisplay.heightPixels;
+
+        // Log it
+        //Log.wtf("Display width and height", displayWidth + " " + displayHeight);
+
 
         // Find the textfield representing the user name
         TextView userName = (TextView) pick_btn_container.findViewById(R.id.user_name);
@@ -95,12 +116,56 @@ public class BubblesFragment extends Fragment {
         // Set the username
         userName.setText(n.getName());
 
+        // Get the size of each bubble
+        pick_btn_container.measure(displayWidth, displayHeight);
+        int bubbleWidth = pick_btn_container.getMeasuredWidth();
+        int bubbleHeight = pick_btn_container.getMeasuredHeight();
+
+        // Log that
+        //Log.wtf("Bubble width and height", bubbleWidth + " " + bubbleHeight);
+
+        // Create a new random object
+        Random randMargin = new Random();
+
+        // Create a new layout param for the bubble
+        RelativeLayout.LayoutParams pick_btn_container_layout = new RelativeLayout.LayoutParams(
+                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                                        RelativeLayout.LayoutParams.WRAP_CONTENT );
+
+        // Set the margins
+        // min = 0
+        // max = display size minus widget size
+        pick_btn_container_layout.leftMargin = randMargin.nextInt((displayWidth - bubbleWidth) + 1);
+        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 56) - bubbleHeight) + 1);
+
+        // Apply the new layout
+        pick_btn_container.setLayoutParams(pick_btn_container_layout);
+
+        // Create a new bubble object and add that to an arraylist
+        Bubble pickItem = new Bubble
+                                (
+                                        pick_btn_container_layout.topMargin,
+                                        pick_btn_container_layout.leftMargin,
+                                        bubbleWidth,
+                                        bubbleHeight,
+                                        n.getName()
+                                );
 
 
+        // Run through the list to check for colissions
+        pick_items.add(pickItem);
+
+        // Call the collision class, check if there's no overlap
+        Collision collision = new Collision(pick_items, pickItem);
+
+        if (!collision.checkOverlap()) {
+            System.out.println("There's overlap for " + n.getName());
+        } else {
+            System.out.println("There's no overlap for " + n.getName());
+        }
 
         // Finished, add the view to the container
         rootContainer.addView(pick_btn_container);
-
 
     }
 }
