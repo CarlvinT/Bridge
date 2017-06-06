@@ -14,9 +14,25 @@ public class Collision {
     private ArrayList<Bubble> bubbles;
     private Bubble pick_item;
 
+    private int piLeft;
+    private int piTop;
+    private int piRight;
+    private int piBottom;
+
+    private Rect piRect;
+
     public Collision(ArrayList<Bubble> bubbles, Bubble pick_item){
         this.bubbles = bubbles; // de lijst met al bestaande bubbels
         this.pick_item = pick_item; // de huidige bubbel
+
+        // Set the four corner coordinates of the current item
+        this.piLeft = pick_item.getLeftMargin();
+        this.piTop = pick_item.getTopMargin();
+        this.piRight = pick_item.getLeftMargin() + pick_item.getWidth();
+        this.piBottom = pick_item.getTopMargin() + pick_item.getHeight();
+
+        // Now we have a rectangle of the current item
+        this.piRect = new Rect(piLeft, piTop, piRight, piBottom);
     }
 
 
@@ -28,17 +44,8 @@ public class Collision {
             int bRight = b.getLeftMargin() + b.getWidth();
             int bBottom = b.getTopMargin() + b.getHeight();
 
-            // Set the four corner coordinates of the current item
-            int piLeft = pick_item.getLeftMargin();
-            int piTop = pick_item.getTopMargin();
-            int piRight = pick_item.getLeftMargin() + pick_item.getWidth();
-            int piBottom = pick_item.getTopMargin() + pick_item.getHeight();
-
             // Now we have a rectangle of the next bubble in the list
             Rect bRect = new Rect(bLeft, bTop, bRight, bBottom);
-
-            // Now we have a rectangle of the current item
-            Rect piRect = new Rect(piLeft, piTop, piRight, piBottom);
 
             // If there's an intersection this function will prevent the bubble
             // from being placed

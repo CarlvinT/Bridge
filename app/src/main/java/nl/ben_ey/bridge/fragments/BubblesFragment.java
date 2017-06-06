@@ -58,6 +58,8 @@ public class BubblesFragment extends Fragment {
         //  Higher frequency means more wobbles during the animation
         BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
 
+
+
         // Couple the interpolator to the animation
         centreBtnEnter.setInterpolator(interpolator);
 
@@ -105,6 +107,7 @@ public class BubblesFragment extends Fragment {
                               RelativeLayout rootContainer, LayoutInflater inflater, int try_count) {
 
         // @@Todo Sommige items worden tegen de bottom navbar aangedrukt
+        // @@Todo add animations
 
         // Create the layout from file (inflate it)
         RelativeLayout pick_btn_container = (RelativeLayout)
