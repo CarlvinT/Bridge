@@ -9,7 +9,7 @@
         android:id="@+id/imageButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/transparent"
         android:contentDescription="@string/pick_bubble_description"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/pick_bubble" />

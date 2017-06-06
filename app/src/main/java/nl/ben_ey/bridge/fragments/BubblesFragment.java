@@ -2,7 +2,6 @@ package nl.ben_ey.bridge.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,6 +23,7 @@ import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
 import nl.ben_ey.bridge.logarithmics.Collision;
 import nl.ben_ey.bridge.models.Bubble;
+import nl.ben_ey.bridge.models.CentreBubble;
 import nl.ben_ey.bridge.models.Name;
 
 /**
@@ -43,11 +43,44 @@ public class BubblesFragment extends Fragment {
         referenceActivity = getActivity();
         parentHolder = inflater.inflate(R.layout.fragment_bubbles, container, false);
 
+
         // Get the centre bubble and the text
         ImageButton centreBtn = (ImageButton) parentHolder.findViewById(R.id.CentreBubble);
         TextView yourName = (TextView) parentHolder.findViewById(R.id.UserName);
-        ConstraintLayout centerBtnContainer =
-                (ConstraintLayout) parentHolder.findViewById(R.id.centre_button_container);
+
+
+        // Get the display size
+        DisplayMetrics mDisplay = new DisplayMetrics();
+        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(mDisplay);
+
+        RelativeLayout centreBtnContainer =
+                (RelativeLayout) parentHolder.findViewById(R.id.centre_button_container);
+
+        // Measure the centre button container
+        centreBtnContainer.measure(mDisplay.widthPixels, mDisplay.heightPixels);
+
+        // Center by making margin half the screen size minus half the size of the view
+        RelativeLayout.LayoutParams centreBtnPars = new RelativeLayout.LayoutParams(
+                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        // Create the margins
+        centreBtnPars.leftMargin = (mDisplay.widthPixels / 4);
+        centreBtnPars.topMargin = (mDisplay.heightPixels / 4);
+
+        // Apply said margins
+        centreBtnContainer.setLayoutParams(centreBtnPars);
+
+        CentreBubble centreBubble = new CentreBubble
+                (
+                        centreBtnPars.topMargin,
+                        centreBtnPars.leftMargin,
+                        centreBtnContainer.getWidth(),
+                        centreBtnContainer.getHeight(),
+                        "John",
+                        centreBtnPars
+                );
+
 
         // Set up the animation
         final Animation centreBtnEnter = AnimationUtils.loadAnimation(referenceActivity,
@@ -59,14 +92,13 @@ public class BubblesFragment extends Fragment {
         BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
 
 
-
         // Couple the interpolator to the animation
         centreBtnEnter.setInterpolator(interpolator);
 
         // Couple the animation to the button and the text
         //centreBtn.startAnimation(centreBtnEnter);
         yourName.startAnimation(centreBtnEnter);
-        centerBtnContainer.startAnimation(centreBtnEnter);
+        centreBtnContainer.startAnimation(centreBtnEnter);
 
         // Store all the names for now
         List<Name> names = new LinkedList<>();
@@ -86,16 +118,12 @@ public class BubblesFragment extends Fragment {
         RelativeLayout rootContainer =
                 (RelativeLayout) parentHolder.findViewById(R.id.bubbles_container);
 
-        // Get the display size
-        DisplayMetrics mDisplay = new DisplayMetrics();
-        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(mDisplay);
-
         // Create an arraylist of the pick-items
         ArrayList<Bubble> pick_items = new ArrayList<Bubble>();
 
         // For every name create an image bubble
         for (Name n : names){
-            imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, 0);
+            imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, 0, centreBubble);
         }
 
         // Return the inflated layout
@@ -104,7 +132,8 @@ public class BubblesFragment extends Fragment {
 
 
     public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
-                              RelativeLayout rootContainer, LayoutInflater inflater, int try_count) {
+                              RelativeLayout rootContainer, LayoutInflater inflater, int try_count,
+                              CentreBubble centreBubble){
 
         // @@Todo Sommige items worden tegen de bottom navbar aangedrukt
         // @@Todo add animations
@@ -119,7 +148,6 @@ public class BubblesFragment extends Fragment {
 
         // Log it
         //Log.wtf("Display width and height", displayWidth + " " + displayHeight);
-
 
         // Find the textfield representing the user name
         TextView userName = (TextView) pick_btn_container.findViewById(R.id.user_name);
@@ -168,7 +196,7 @@ public class BubblesFragment extends Fragment {
 
 
         // Create an instance of the collision class
-        Collision collision = new Collision(pick_items, pickItem);
+        Collision collision = new Collision(pick_items, pickItem, centreBubble);
 
         // If a colission is detected it get's logged and the bubble will be placed
         // elsewhere
@@ -176,7 +204,8 @@ public class BubblesFragment extends Fragment {
 
             Log.wtf("There's overlap for ", n.getName());
             if (try_count < 100) {
-                imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, try_count + 1);
+                imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, try_count + 1,
+                        centreBubble);
                 return;
             } else {
                 Log.wtf("Too many faulty placements. This bubble won't be placed: ", n.getName());

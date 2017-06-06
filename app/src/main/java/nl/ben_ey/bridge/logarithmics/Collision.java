@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import java.util.ArrayList;
 
 import nl.ben_ey.bridge.models.Bubble;
+import nl.ben_ey.bridge.models.CentreBubble;
 
 /**
  * Created by Ben on 6-6-2017.
@@ -19,9 +20,15 @@ public class Collision {
     private int piRight;
     private int piBottom;
 
-    private Rect piRect;
+    private int ctrLeft;
+    private int ctrTop;
+    private int ctrRight;
+    private int ctrBottom;
 
-    public Collision(ArrayList<Bubble> bubbles, Bubble pick_item){
+    private Rect piRect;
+    private Rect ctrRect;
+
+    public Collision(ArrayList<Bubble> bubbles, Bubble pick_item, CentreBubble centreBubble){
         this.bubbles = bubbles; // de lijst met al bestaande bubbels
         this.pick_item = pick_item; // de huidige bubbel
 
@@ -33,6 +40,17 @@ public class Collision {
 
         // Now we have a rectangle of the current item
         this.piRect = new Rect(piLeft, piTop, piRight, piBottom);
+
+        // Set the four corner coordinates of the centre button
+        this.ctrLeft = centreBubble.getLeftMargin();
+        this.ctrTop = centreBubble.getTopMargin();
+        this.ctrRight = centreBubble.getLeftMargin() + centreBubble.getWidth();
+        this.ctrBottom = centreBubble.getTopMargin() + centreBubble.getHeight();
+
+        System.out.println(this.ctrLeft+this.ctrTop+this.ctrRight+this.ctrBottom);
+
+        // Now we have a rectangle of the centre bubble
+        this.ctrRect = new Rect(ctrLeft, ctrTop, ctrRight, ctrBottom);
     }
 
 
@@ -47,11 +65,14 @@ public class Collision {
             // Now we have a rectangle of the next bubble in the list
             Rect bRect = new Rect(bLeft, bTop, bRight, bBottom);
 
-            // If there's an intersection this function will prevent the bubble
-            // from being placed
-            if (piRect.intersect(bRect)) {
+            // If the current item either intersects with another one
+            // or with the centre button it get's placed elsewhere
+            if (ctrRect.intersect(bRect)) {
+                return false;
+            } else if (piRect.intersect(bRect)) {
                 return false;
             }
+
         }
 
         // Nothing's gone wrong, green light to place the item
