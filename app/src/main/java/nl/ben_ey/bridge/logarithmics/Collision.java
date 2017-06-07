@@ -28,6 +28,7 @@ public class Collision {
     private Rect piRect;
     private Rect ctrRect;
 
+
     public Collision(ArrayList<Bubble> bubbles, Bubble pick_item, CentreBubble centreBubble){
         this.bubbles = bubbles; // de lijst met al bestaande bubbels
         this.pick_item = pick_item; // de huidige bubbel
