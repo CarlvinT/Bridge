@@ -11,5 +11,4 @@ public class CentreBubble extends Bubble {
         super(topMargin, leftMargin, width, height, nameApplied, lpars);
     }
 
-
 }

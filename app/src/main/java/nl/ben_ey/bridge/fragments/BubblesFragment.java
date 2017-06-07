@@ -53,6 +53,7 @@ public class BubblesFragment extends Fragment {
         DisplayMetrics mDisplay = new DisplayMetrics();
         referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(mDisplay);
 
+        // Create a relative layout
         RelativeLayout centreBtnContainer =
                 (RelativeLayout) parentHolder.findViewById(R.id.centre_button_container);
 
@@ -80,7 +81,7 @@ public class BubblesFragment extends Fragment {
                         centreBtnPars.leftMargin,
                         centreBtnContainer.getWidth(),
                         centreBtnContainer.getHeight(),
-                        "John",
+                        "CentreBubble",
                         centreBtnPars
                 );
 
