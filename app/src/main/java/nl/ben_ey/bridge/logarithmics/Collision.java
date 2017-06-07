@@ -54,6 +54,7 @@ public class Collision {
     }
 
 
+
     public boolean checkOverlap(){
         for( Bubble b : bubbles ){
             // Set the four corner coordinates of the next bubble in the list
