@@ -12,12 +12,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
-import nl.ben_ey.bridge.models.Name;
 
 /**
  * Created by Ben on 1-6-2017.
@@ -60,20 +56,6 @@ public class BubblesFragment extends Fragment {
         //centreBtn.startAnimation(centreBtnEnter);
         yourName.startAnimation(centreBtnEnter);
         centreBtnContainer.startAnimation(centreBtnEnter);
-
-        // Store all the names for now
-        List<Name> names = new LinkedList<>();
-        names.add(new Name("Carlvin"));
-        names.add(new Name("Carlvi"));
-        names.add(new Name("Carlv"));
-        names.add(new Name("Carl"));
-        names.add(new Name("Car"));
-        names.add(new Name("Carb"));
-        names.add(new Name("Cars"));
-        names.add(new Name("Carra"));
-        names.add(new Name("Ferrari"));
-        names.add(new Name("Enzo"));
-        names.add(new Name("Vroem"));
 
         // Return the inflated layout
         return parentHolder;
