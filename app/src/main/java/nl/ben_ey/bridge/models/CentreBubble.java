@@ -10,5 +10,4 @@ public class CentreBubble extends Bubble {
     public CentreBubble(int topMargin, int leftMargin, int width, int height, String nameApplied, RelativeLayout.LayoutParams lpars) {
         super(topMargin, leftMargin, width, height, nameApplied, lpars);
     }
-
 }

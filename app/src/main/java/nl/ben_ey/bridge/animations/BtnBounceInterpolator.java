@@ -17,4 +17,5 @@ public class BtnBounceInterpolator implements android.view.animation.Interpolato
         return (float) (-1 * Math.pow(Math.E, -time / mAmplitude) *
                 Math.cos(mFrequency * time) + 1);
     }
+
 }

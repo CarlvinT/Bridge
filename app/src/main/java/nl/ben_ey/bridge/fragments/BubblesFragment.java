@@ -37,6 +37,7 @@ public class BubblesFragment extends Fragment {
 
     private int counter;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         // Set the reference activity and inflate the layout for this fragment

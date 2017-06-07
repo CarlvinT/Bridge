@@ -25,4 +25,5 @@
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         tools:ignore="MissingPrefix" />
+
 </RelativeLayout>

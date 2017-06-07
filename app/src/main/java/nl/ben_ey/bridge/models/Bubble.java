@@ -15,7 +15,6 @@ public class Bubble {
     private RelativeLayout.LayoutParams lPars;
 
 
-
     public Bubble(int topMargin, int leftMargin, int width, int height, String nameApplied, RelativeLayout.LayoutParams lpars){
         this.topMargin = topMargin;
         this.leftMargin = leftMargin;
