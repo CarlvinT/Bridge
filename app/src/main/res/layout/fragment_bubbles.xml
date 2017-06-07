@@ -15,7 +15,7 @@
             android:id="@+id/CentreBubble"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="?attr/colorAccent"
+            android:background="@android:color/transparent"
             android:contentDescription="@string/centre_bubble_description"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"

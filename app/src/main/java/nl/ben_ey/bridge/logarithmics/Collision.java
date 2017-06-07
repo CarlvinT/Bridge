@@ -67,7 +67,11 @@ public class Collision {
 
             // If the current item either intersects with another one
             // or with the centre button it get's placed elsewhere
-            if (ctrRect.intersect(bRect) || piRect.intersect(bRect)) {
+            if (ctrRect.intersect(bRect)) {
+                return false;
+            }
+            
+            if (piRect.intersect(bRect)) {
                 return false;
             }
 

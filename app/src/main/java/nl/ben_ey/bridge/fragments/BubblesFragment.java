@@ -73,6 +73,7 @@ public class BubblesFragment extends Fragment {
         // Apply said margins
         centreBtnContainer.setLayoutParams(centreBtnPars);
 
+
         CentreBubble centreBubble = new CentreBubble
                 (
                         centreBtnPars.topMargin,
@@ -109,11 +110,11 @@ public class BubblesFragment extends Fragment {
         names.add(new Name("Carlv"));
         names.add(new Name("Carl"));
         names.add(new Name("Car"));
-        names.add(new Name("Car"));
-        names.add(new Name("Car"));
-        names.add(new Name("Car"));
-        names.add(new Name("Car"));
-        names.add(new Name("Car"));
+        names.add(new Name("Carb"));
+        names.add(new Name("Cars"));
+        names.add(new Name("Carra"));
+        names.add(new Name("Ferrari"));
+        names.add(new Name("Enzo"));
         names.add(new Name("Vroem"));
 
         // Create one container that will be used in each pick-button
