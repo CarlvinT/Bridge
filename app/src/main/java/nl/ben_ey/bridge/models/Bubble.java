@@ -6,4 +6,5 @@ package nl.ben_ey.bridge.models;
 
 public class Bubble {
     private boolean available;
+
 }
