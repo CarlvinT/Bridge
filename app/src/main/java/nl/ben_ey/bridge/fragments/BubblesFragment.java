@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import nl.ben_ey.bridge.R;
@@ -34,13 +33,15 @@ public class BubblesFragment extends Fragment {
         parentHolder = inflater.inflate(R.layout.fragment_bubbles, container, false);
 
 
-        // Get the centre button, it's text and container
-        ImageView centreBtn = (ImageView) parentHolder.findViewById(R.id.centre_button);
-        TextView yourName = (TextView) parentHolder.findViewById(R.id.user_name);
-        ConstraintLayout centreBtnContainer = (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
+        // Get the centre button text and container
+        TextView yourName =
+                (TextView) parentHolder.findViewById(R.id.user_name);
+
+        ConstraintLayout centreBtnContainer =
+                (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
 
         // Set up the animation
-        final Animation centreBtnEnter = AnimationUtils.loadAnimation(referenceActivity,
+        final Animation centreBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
                 R.anim.bubble_bounce);
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20
@@ -50,12 +51,12 @@ public class BubblesFragment extends Fragment {
 
 
         // Couple the interpolator to the animation
-        centreBtnEnter.setInterpolator(interpolator);
+        centreBtnAnimation.setInterpolator(interpolator);
 
         // Couple the animation to the button and the text
-        //centreBtn.startAnimation(centreBtnEnter);
-        yourName.startAnimation(centreBtnEnter);
-        centreBtnContainer.startAnimation(centreBtnEnter);
+        //centreBtn.startAnimation(centreBtnAnimation);
+        yourName.startAnimation(centreBtnAnimation);
+        centreBtnContainer.startAnimation(centreBtnAnimation);
 
         // Return the inflated layout
         return parentHolder;
