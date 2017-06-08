@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
@@ -32,11 +33,11 @@ public class BubblesFragment extends Fragment {
         referenceActivity = getActivity();
         parentHolder = inflater.inflate(R.layout.fragment_bubbles, container, false);
 
+        // Get the root container
+        ConstraintLayout bubblesRoot =
+                (ConstraintLayout) parentHolder.findViewById(R.id.pick_bubbles_container);
 
-        // Get the centre button text and container
-        TextView yourName =
-                (TextView) parentHolder.findViewById(R.id.user_name);
-
+        // Get the centre button container
         ConstraintLayout centreBtnContainer =
                 (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
 
@@ -49,18 +50,32 @@ public class BubblesFragment extends Fragment {
         //  Higher frequency means more wobbles during the animation
         BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
 
-
         // Couple the interpolator to the animation
         centreBtnAnimation.setInterpolator(interpolator);
 
         // Couple the animation to the button and the text
         //centreBtn.startAnimation(centreBtnAnimation);
-        yourName.startAnimation(centreBtnAnimation);
         centreBtnContainer.startAnimation(centreBtnAnimation);
+
+
+        // Setup the same animation for every button
+        // Only the container needs animation
+        ArrayList<View> pickBubblesList = new ArrayList<>();
+
+        for (int i = 0; i < bubblesRoot.getChildCount(); i++) {
+            pickBubblesList.add(bubblesRoot.getChildAt(i));
+            System.out.println("Child at " + i + " was added to arraylist");
+        }
+
+        for (View btn : pickBubblesList) {
+
+        }
+
 
         // Return the inflated layout
         return parentHolder;
     }
+
 
 
 //    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,

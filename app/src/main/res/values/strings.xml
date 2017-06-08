@@ -12,4 +12,5 @@
     <string name="username">Ben</string>
     <string name="centre_bubble_description">Bubble representing the user</string>
     <string name="pick_bubble_description">Bubble representing another user</string>
+    <string name="pick_btn_tag">pickButton</string>
 </resources>
