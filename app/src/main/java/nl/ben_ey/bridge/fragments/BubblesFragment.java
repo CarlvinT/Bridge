@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
@@ -26,7 +27,6 @@ public class BubblesFragment extends Fragment {
 
     private int counter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
         // Set the reference activity and inflate the layout for this fragment
@@ -37,48 +37,79 @@ public class BubblesFragment extends Fragment {
         ConstraintLayout bubblesRoot =
                 (ConstraintLayout) parentHolder.findViewById(R.id.pick_bubbles_container);
 
+
         // Get the centre button container
         ConstraintLayout centreBtnContainer =
                 (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
 
+
         // Set up the animation
         final Animation centreBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
                 R.anim.bubble_bounce);
+
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         //  Higher amplitude means more pronounced bounces
         //  Higher frequency means more wobbles during the animation
         BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
 
+
         // Couple the interpolator to the animation
         centreBtnAnimation.setInterpolator(interpolator);
+
 
         // Couple the animation to the button and the text
         //centreBtn.startAnimation(centreBtnAnimation);
         centreBtnContainer.startAnimation(centreBtnAnimation);
 
 
-        // Setup the same animation for every button
-        // Only the container needs animation
+        // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
 
-        for (int i = 0; i < bubblesRoot.getChildCount(); i++) {
-            pickBubblesList.add(bubblesRoot.getChildAt(i));
-            System.out.println("Child at " + i + " was added to arraylist");
-        }
 
-        for (View btn : pickBubblesList) {
+        // If there's no saved instance state, counter is 0 which means that there's bubbles
+        // to create, otherwise don't create any bubbles
 
+
+        // Get ever child of the bubblesrRoot constraintlayout and put it in the
+        // arraylist
+        for (counter = 0; counter < bubblesRoot.getChildCount(); counter++) {
+            pickBubblesList.add(bubblesRoot.getChildAt(counter));
+
+            // Set up a randomizer
+            Random randomStart = new Random();
+
+            // Create a bouncing animation with randomized factors fore very buttonpick
+            // view and apply it
+            for (View btn : pickBubblesList) {
+                Animation pickBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
+                        R.anim.bubble_bounce);
+
+                pickBtnAnimation.setStartOffset(randomStart.nextInt(1000) + 700);
+                pickBtnAnimation.setDuration(randomStart.nextInt(1000) + 500);
+
+                pickBtnAnimation.setInterpolator(interpolator);
+                btn.startAnimation(pickBtnAnimation);
+            }
         }
 
 
         // Return the inflated layout
         return parentHolder;
+
     }
 
+}
 
 
-//    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
+
+
+
+
+
+
+
+    //    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
 //                              RelativeLayout rootContainer, LayoutInflater inflater, int try_count,
 //                              CentreBubble centreBubble){
 //
@@ -215,8 +246,6 @@ public class BubblesFragment extends Fragment {
 //        pickBubblesContainer.addView(mPickImage);
 //
 //    }
-
-}
 
 
 
