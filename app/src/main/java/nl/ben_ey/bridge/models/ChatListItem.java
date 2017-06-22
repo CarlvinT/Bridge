@@ -4,12 +4,17 @@ package nl.ben_ey.bridge.models;
  * Created by ben-e on 20-6-17.
  */
 
-public class ChatListITem {
+public class ChatListItem {
     private String name;
     private int distance;
     private int lastOnline;
 
-    public ChatListITem(String name, int distance, int lastOnline) {
+    public ChatListItem() {
+        super();
+    }
+
+    public ChatListItem(String name, int distance, int lastOnline) {
+        super();
         this.name = name;
         this.distance = distance;
         this.lastOnline = lastOnline;
