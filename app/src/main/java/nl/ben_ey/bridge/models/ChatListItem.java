@@ -6,14 +6,14 @@ package nl.ben_ey.bridge.models;
 
 public class ChatListItem {
     private String name;
-    private int distance;
-    private int lastOnline;
+    private String distance;
+    private String lastOnline;
 
     public ChatListItem() {
         super();
     }
 
-    public ChatListItem(String name, int distance, int lastOnline) {
+    public ChatListItem(String name, String distance, String lastOnline) {
         super();
         this.name = name;
         this.distance = distance;
@@ -28,19 +28,20 @@ public class ChatListItem {
         this.name = name;
     }
 
-    public int getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(int distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 
-    public int getLastOnline() {
-        return lastOnline;
+    public String getLastOnline() {
+        String output = lastOnline.replaceAll("..(?!$)", "$0:");
+        return output;
     }
 
-    public void setLastOnline(int lastOnline) {
+    public void setLastOnline(String lastOnline) {
         this.lastOnline = lastOnline;
     }
 }
