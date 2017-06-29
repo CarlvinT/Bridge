@@ -40,9 +40,9 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new ChatHolder();
-            holder.userName = (TextView) row.findViewById(R.id.userName);
+            holder.userName = (TextView) row.findViewById(R.id.user_name);
             holder.userDistance = (TextView) row.findViewById(R.id.user_distance);
-            holder.userLastOnline = (TextView) row.findViewById(R.id.lastOnlineTime);
+            holder.userLastOnline = (TextView) row.findViewById(R.id.last_online_time);
 
             row.setTag(holder);
 
@@ -54,8 +54,11 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         }
 
         ChatListItem chatListItem = data[position];
+        String userDistanceString = chatListItem.getDistance() + " " +
+                context.getResources().getString(R.string.chatUserDistance);
+
         holder.userName.setText(chatListItem.getName());
-        holder.userDistance.setText(chatListItem.getDistance());
+        holder.userDistance.setText(userDistanceString);
         holder.userLastOnline.setText(chatListItem.getLastOnline());
 
         return row;
@@ -63,7 +66,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
     }
 
 
-    static class ChatHolder
+    private static class ChatHolder
     {
         TextView userName;
         TextView userDistance;
