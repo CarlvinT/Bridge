@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintVertical_bias="0.394" />
+    <ImageView
+        android:id="@+id/uiChatTopBar"
+        android:layout_width="405dp"
+        android:layout_height="242dp"
+        app:srcCompat="@drawable/top_bar_square"
+        tools:layout_editor_absoluteX="-10dp"
+        tools:layout_editor_absoluteY="-56dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
+    <TextView
+        android:id="@+id/userChatName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RadioButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+        android:text="Kathy Peary"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteY="16dp"
+        app:layout_constraintRight_toLeftOf="@+id/userChatProfile"
+        android:layout_marginRight="8dp" />
 
-    <RadioButton
-        android:id="@+id/radioButton3"
+    <TextView
+        android:id="@+id/userChatDistanceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="RadioButton"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+        android:layout_marginRight="8dp"
+        android:text="metres from you"
+        android:textAlignment="textEnd"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        app:layout_constraintRight_toLeftOf="@+id/userChatProfile"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/userChatDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        tools:layout_editor_absoluteY="45dp"
+        app:layout_constraintRight_toLeftOf="@+id/userChatDistanceText"
+        android:layout_marginRight="4dp" />
+
+    <ImageView
+        android:id="@+id/userChatProfile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_profile_activity_icon"
+        tools:layout_editor_absoluteX="298dp"
+        tools:layout_editor_absoluteY="16dp" />
+
 </android.support.constraint.ConstraintLayout>
