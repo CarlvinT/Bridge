@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import nl.ben_ey.bridge.fragments.BubblesFragment;
+import nl.ben_ey.bridge.fragments.ChatFragment;
 import nl.ben_ey.bridge.fragments.ChatlistFragment;
 import nl.ben_ey.bridge.fragments.ProfileFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     nextFragment = new BubblesFragment();
                     break;
                 case R.id.navigation_chat:
-                    nextFragment = new ChatlistFragment();
+                    nextFragment = new ChatFragment();
                     break;
                 case R.id.navigation_profile:
                     nextFragment = new ProfileFragment();
