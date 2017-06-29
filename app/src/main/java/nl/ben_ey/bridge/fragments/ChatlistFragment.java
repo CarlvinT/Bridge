@@ -41,7 +41,6 @@ public class ChatlistFragment extends Fragment {
             new ChatListItem("Lida", "1", "1242"),
             new ChatListItem("James", "11", "1831"),
             new ChatListItem("Jenny", "22", "1842"),
-            new ChatListItem("Kyra", "2", "1912"),
         };
 
         ChatListAdapter adapter = new ChatListAdapter(activity, R.layout.listrow, chatListItemData);
