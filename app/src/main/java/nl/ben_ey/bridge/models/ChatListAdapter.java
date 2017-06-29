@@ -41,7 +41,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
 
             holder = new ChatHolder();
             holder.userName = (TextView) row.findViewById(R.id.userName);
-            holder.userDistance = (TextView) row.findViewById(R.id.userDistance);
+            holder.userDistance = (TextView) row.findViewById(R.id.user_distance);
             holder.userLastOnline = (TextView) row.findViewById(R.id.lastOnlineTime);
 
             row.setTag(holder);
