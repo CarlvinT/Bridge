@@ -17,4 +17,7 @@
     <string name="chatProfilePicCtDsc">Chat profile pic</string>
     <string name="chatUserName">Kathy Peary</string>
     <string name="chatUserDistance">500 metres from you</string>
+    <string name="chatMsgInputPlaceholder">Message...</string>
+    <string name="sendBtnCtDsc">Button for sending a message</string>
+    <string name="sendIconCtDsc">Icon on the sending button</string>
 </resources>
