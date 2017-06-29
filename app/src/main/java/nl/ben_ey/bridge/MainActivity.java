@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     nextFragment = new BubblesFragment();
                     break;
                 case R.id.navigation_chat:
-                    nextFragment = new ChatlistFragment();
+                    nextFragment = new ChatFragment();
                     break;
                 case R.id.navigation_profile:
                     nextFragment = new ProfileFragment();
