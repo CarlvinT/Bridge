@@ -20,4 +20,5 @@
     <string name="chatMsgInputPlaceholder">Message...</string>
     <string name="sendBtnCtDsc">Button for sending a message</string>
     <string name="sendIconCtDsc">Icon on the sending button</string>
+    <string name="chat_message_input_hint">Message...</string>
 </resources>
