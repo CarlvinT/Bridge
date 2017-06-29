@@ -23,35 +23,23 @@
         android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="11dp"
-        android:text="TextView"
+        android:layout_marginTop="0dp"
+        android:text="@string/chatUserName"
         android:textSize="24sp"
         app:layout_constraintLeft_toRightOf="@+id/user_icon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/user_icon" />
 
     <TextView
         android:id="@+id/user_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="75dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/user_distance_km"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="Kilometres away"
-        app:layout_constraintLeft_toRightOf="@+id/user_distance"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="-1dp"
+        android:layout_marginLeft="18dp"
+        android:text="@string/chatUserDistance"
+        app:layout_constraintBottom_toBottomOf="@+id/user_icon"
+        app:layout_constraintLeft_toRightOf="@+id/user_icon" />
 
     <TextView
         android:id="@+id/last_online"
@@ -67,15 +55,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/last_online_time"
+        android:id="@+id/lastOnlineTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginRight="0dp"
         android:layout_marginTop="0dp"
-        android:text="TextView"
-        android:textSize="12sp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="00:00"
+        android:textSize="16sp"
+        app:layout_constraintRight_toRightOf="@+id/last_online"
         app:layout_constraintTop_toBottomOf="@+id/last_online" />
 
     <Space
