@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/hio"
+    android:id="@+id/chat_stranger_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/hi"
+        android:id="@+id/stranger_bubble_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/chat_bubble_stranger">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/stranger_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
-            android:text="Mah boi   How are ye doing \nnice guys always" />
+            android:paddingLeft="15dp"
+            android:paddingRight="5dp"
+            android:text="Dere's a snek in me boot"
+            android:textColor="@android:color/background_light" />
 
     </LinearLayout>
 
