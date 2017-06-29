@@ -13,4 +13,8 @@
     <string name="centre_bubble_description">Bubble representing the user</string>
     <string name="pick_bubble_description">Bubble representing another user</string>
     <string name="pick_btn_tag">pickButton</string>
+    <string name="topBarCtDsc">Image for the top bar</string>
+    <string name="chatProfilePicCtDsc">Chat profile pic</string>
+    <string name="chatUserName">Kathy Peary</string>
+    <string name="chatUserDistance">500 metres from you</string>
 </resources>
