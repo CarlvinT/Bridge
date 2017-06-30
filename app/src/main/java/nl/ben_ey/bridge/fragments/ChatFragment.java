@@ -18,10 +18,10 @@ public class ChatFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
 
-        //TODO: Create 9patch for message input so to scale that
-        //TODO: Create 9patch for chat bubbles
         //TODO: Create chat bubbles system using this tutorial: http://www.tutorialsface.com/2015/08/building-your-own-android-chat-messenger-app-similar-to-whatsapp-using-xmpp-smack-4-1-api-from-scratch-part-1/
         //TODO: When you click on the input message bar the soft keyboard pushes away the top part of the UI. Keep that!
+
+
 
         return inflater.inflate(R.layout.fragment_chat, container, false);
     }
