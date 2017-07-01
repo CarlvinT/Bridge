@@ -53,7 +53,7 @@ public class ChatAdapter extends BaseAdapter {
         }
 
         TextView msg = (TextView) view.findViewById(R.id.user_bubble);
-        msg.setText(message.body);
+        msg.setText(message.getBody());
 
         LinearLayout bubbleLayout =
                 (LinearLayout) view.findViewById(R.id.user_container);

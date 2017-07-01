@@ -27,8 +27,7 @@ import nl.ben_ey.bridge.models.CommonMethods;
 
 public class ChatFragment extends Fragment implements View.OnClickListener {
 
-    private Context context;
-    private Activity activity;
+    private FragmentActivity listener;
 
     private EditText msg_input;
     private ImageButton msg_send;
@@ -46,7 +45,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof Activity){
-            this.context = (FragmentActivity) context;
+            this.listener = (FragmentActivity) context;
         }
     }
 
@@ -60,10 +59,8 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         //TODO: Create chat bubbles system using this tutorial: http://www.tutorialsface.com/2015/08/building-your-own-android-chat-messenger-app-similar-to-whatsapp-using-xmpp-smack-4-1-api-from-scratch-part-1/
         //TODO: When you click on the input message bar the soft keyboard pushes away the top part of the UI. Keep that!
 
-        activity = getActivity();
-        View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
-        return view;
+        return inflater.inflate(R.layout.fragment_chat, container, false);
     }
 
 
@@ -73,22 +70,32 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        msg_input = (EditText) activity.findViewById(R.id.chat_message_input);
-        msg_send = (ImageButton) activity.findViewById(R.id.send_button);
-
         random = new Random();
-        msg_input = (EditText) activity.findViewById(R.id.chat_message_input);
-        msg_send = (ImageButton) activity.findViewById(R.id.send_button);
-        msgListView = (ListView) activity.findViewById(R.id.chat_msg_list);
+        msg_input = (EditText) listener.findViewById(R.id.chat_message_input);
+        msg_send = (ImageButton) listener.findViewById(R.id.send_button);
+        msgListView = (ListView) listener.findViewById(R.id.chat_msg_list);
 
+        // Set an onClickListener on the message send button. Because we're
+        // implementing the OnClickListener interface we can just type 'this' here
         msg_send.setOnClickListener(this);
+
+        // Make sure a new item that gets added to the message listview always
+        // starts on the bottom and works it's way to the top
         msgListView.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         msgListView.setStackFromBottom(true);
 
+        // Create a new arrayList to be filled with the ChatMessage object
         chatList = new ArrayList<ChatMessage>();
-        chatAdapter = new ChatAdapter(activity, chatList);
+
+        // Create new instance of the ChatAdapter class
+        chatAdapter = new ChatAdapter(listener, chatList);
+
+        // Apply the custom ChatAdapter class to the listview that will house
+        // the messages
         msgListView.setAdapter(chatAdapter);
 
+        // Get the measured initial height of the EditText for message typing
+        // and copy that height to the message sending button
         final ViewTreeObserver observer = msg_input.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -106,7 +113,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDetach() {
         super.onDetach();
-        this.context = null;
+        this.listener = null;
     }
 
 
@@ -119,10 +126,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) { }
-
-
+    // This function
     public void sendTextMessage(View v) {
         String message = msg_input.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
@@ -133,11 +137,16 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
             chatMessage.setDate(CommonMethods.getCurrentDate());
             chatMessage.setTime(CommonMethods.getCurrentTime());
             msg_input.setText("");
+            chatAdapter.add(chatMessage);
+            chatAdapter.notifyDataSetChanged();
 
         }
     }
 
 
+    // When a click event is received this function will check if the view that
+    // fired the event is in fact the send button. If it is the sendTextMessage
+    // function will be called
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
