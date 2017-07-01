@@ -64,7 +64,7 @@ public class ChatAdapter extends BaseAdapter {
         if (message.isMine) {
             bubbleLayout.setBackgroundResource(R.drawable.chat_bubble_user);
             bubbleLayoutContainer.setGravity(Gravity.RIGHT);
-            msg.setTextColor(Color.BLACK);
+            msg.setTextColor(view.getResources().getColor(R.color.chatUserTextColor));
         } else {
             bubbleLayout.setBackgroundResource(R.drawable.chat_bubble_stranger);
             bubbleLayoutContainer.setGravity(Gravity.LEFT);

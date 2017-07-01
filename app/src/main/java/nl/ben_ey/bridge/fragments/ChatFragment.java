@@ -131,7 +131,7 @@ public class ChatFragment extends Fragment implements View.OnClickListener {
         String message = msg_input.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
             final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-                    "" + random.nextInt(1000), true);
+                    "" + random.nextInt(1000), false);
             chatMessage.setMsgID();
             chatMessage.setBody(message);
             chatMessage.setDate(CommonMethods.getCurrentDate());
