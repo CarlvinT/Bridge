@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
+            android:maxWidth="@dimen/max_chatbubble_width"
             android:paddingLeft="5dp"
             android:paddingRight="15dp"
             android:text="private methods everywhere"
