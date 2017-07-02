@@ -3,6 +3,7 @@ package nl.ben_ey.bridge.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ public class BubblesFragment extends Fragment
     private Animation centreBtnAnimation;
     private String userName;
     private String userDistance;
+    boolean runnedOnce;
 
     @Override
     public void onAttach(Context context)
@@ -89,7 +91,6 @@ public class BubblesFragment extends Fragment
         centreBtnAnimation.setInterpolator(interpolator);
 
         // Couple the animation to the button and the text
-        //centreBtn.startAnimation(centreBtnAnimation);
         centreBtnContainer.startAnimation(centreBtnAnimation);
 
         // Return the inflated layout

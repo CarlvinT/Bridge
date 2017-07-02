@@ -75,12 +75,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         // Create a new arrayList to be filled with the ChatMessage object
         chatList = new ArrayList<ChatMessage>();
 
-        chatList.add(new ChatMessage(userOne, userTwo, "She said", "" + random.nextInt(1000), true));
-        chatList.add(new ChatMessage(userOne, userTwo, "Boii", "" + random.nextInt(1000), true));
-        chatList.add(new ChatMessage(userOne, userTwo, "Let's not talk too much", "" + random.nextInt(1000), false));
-        chatList.add(new ChatMessage(userOne, userTwo, "Grab on my waist", "" + random.nextInt(1000), false));
-        chatList.add(new ChatMessage(userOne, userTwo, "and", "" + random.nextInt(1000), false));
-        chatList.add(new ChatMessage(userOne, userTwo, "Move that body like this", "" + random.nextInt(1000), true));
+//        chatList.add(new ChatMessage(userOne, userTwo, "She said", "" + random.nextInt(1000), true));
+//        chatList.add(new ChatMessage(userOne, userTwo, "Boii", "" + random.nextInt(1000), true));
+//        chatList.add(new ChatMessage(userOne, userTwo, "Let's not talk too much", "" + random.nextInt(1000), false));
+//        chatList.add(new ChatMessage(userOne, userTwo, "Grab on my waist", "" + random.nextInt(1000), false));
+//        chatList.add(new ChatMessage(userOne, userTwo, "and", "" + random.nextInt(1000), false));
+//        chatList.add(new ChatMessage(userOne, userTwo, "Move that body like this", "" + random.nextInt(1000), true));
 
         // Create new instance of the ChatAdapter class
         chatAdapter = new ChatAdapter(this, chatList);
@@ -101,12 +101,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    // This function
+    // This function will format a ChatMessage object and add it to the adapter
     public void sendTextMessage(View v) {
         String message = msg_input.getEditableText().toString();
         if (!message.equalsIgnoreCase("")) {
             final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-                    "" + random.nextInt(1000), false);
+                    "" + random.nextInt(1000), true);
             chatMessage.setMsgID();
             chatMessage.setBody(message);
             chatMessage.setDate(CommonMethods.getCurrentDate());

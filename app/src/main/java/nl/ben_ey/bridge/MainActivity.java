@@ -52,10 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         fManger = getSupportFragmentManager();
 
-        // TODO: Bundle data from bubble or list-item to chat
-        // TODO: Stop the bubble animation from playing every time
-        // TODO: Set isMine back to user and remove placeholder convo
-        // TODO: Invert launcher icon and create round version
+        // TODO: Invert launcher icon and create  round version
 
         if (savedInstanceState != null) {
             Log.wtf("Rebuilt", "Fragment already exists");
