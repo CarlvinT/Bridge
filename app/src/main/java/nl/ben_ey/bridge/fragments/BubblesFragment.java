@@ -37,35 +37,28 @@ public class BubblesFragment extends Fragment {
         ConstraintLayout bubblesRoot =
                 (ConstraintLayout) parentHolder.findViewById(R.id.pick_bubbles_container);
 
-
         // Get the centre button container
         ConstraintLayout centreBtnContainer =
                 (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
 
-
         // Set up the animation
         final Animation centreBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
                 R.anim.bubble_bounce);
-
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         //  Higher amplitude means more pronounced bounces
         //  Higher frequency means more wobbles during the animation
         BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
 
-
         // Couple the interpolator to the animation
         centreBtnAnimation.setInterpolator(interpolator);
-
 
         // Couple the animation to the button and the text
         //centreBtn.startAnimation(centreBtnAnimation);
         centreBtnContainer.startAnimation(centreBtnAnimation);
 
-
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
-
 
         // If there's no saved instance state, counter is 0 which means that there's bubbles
         // to create, otherwise don't create any bubbles
@@ -93,10 +86,8 @@ public class BubblesFragment extends Fragment {
             }
         }
 
-
         // Return the inflated layout
         return parentHolder;
-
     }
 
 }

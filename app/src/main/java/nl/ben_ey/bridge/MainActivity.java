@@ -1,27 +1,18 @@
 package nl.ben_ey.bridge;
 
 import android.content.Context;
-import android.net.ParseException;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
-import java.util.Locale;
-
-import nl.ben_ey.bridge.database.Chats;
 import nl.ben_ey.bridge.fragments.BubblesFragment;
-import nl.ben_ey.bridge.fragments.ChatFragment;
 import nl.ben_ey.bridge.fragments.ChatlistFragment;
 import nl.ben_ey.bridge.fragments.ProfileFragment;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
