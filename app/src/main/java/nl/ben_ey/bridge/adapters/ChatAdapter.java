@@ -1,4 +1,4 @@
-package nl.ben_ey.bridge.models;
+package nl.ben_ey.bridge.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import nl.ben_ey.bridge.R;
+import nl.ben_ey.bridge.models.ChatMessage;
 
 /**
  * Created by Ben-e on 30-6-2017.

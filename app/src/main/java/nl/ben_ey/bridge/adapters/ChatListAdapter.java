@@ -1,10 +1,8 @@
-package nl.ben_ey.bridge.models;
+package nl.ben_ey.bridge.adapters;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 
 import nl.ben_ey.bridge.ChatActivity;
 import nl.ben_ey.bridge.R;
-import nl.ben_ey.bridge.fragments.ChatFragment;
+import nl.ben_ey.bridge.models.ChatListItem;
 
 /**
  * Created by Ben on 22/06/2017.

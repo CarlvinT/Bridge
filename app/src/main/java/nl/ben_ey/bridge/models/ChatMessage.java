@@ -11,7 +11,7 @@ public class ChatMessage {
     private String body, sender, receiver, senderName;
     private String Date, Time;
     private String msgid;
-    boolean isMine;
+    public boolean isMine;
 
     public ChatMessage(String sender, String receiver, String messageString,
             String ID, boolean isMine) {

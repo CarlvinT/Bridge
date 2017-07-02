@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import nl.ben_ey.bridge.R;
-import nl.ben_ey.bridge.models.ChatAdapter;
+import nl.ben_ey.bridge.adapters.ChatAdapter;
 import nl.ben_ey.bridge.models.ChatMessage;
 import nl.ben_ey.bridge.models.CommonMethods;
 
