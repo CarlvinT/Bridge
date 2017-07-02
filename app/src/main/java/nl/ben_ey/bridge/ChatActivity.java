@@ -69,7 +69,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             public void onGlobalLayout() {
                 msg_send.requestLayout();
                 msg_send.getLayoutParams().height = msg_input.getHeight();
-                observer.removeGlobalOnLayoutListener(this);
+                // observer.removeGlobalOnLayoutListener(this);
             }
         });
     }

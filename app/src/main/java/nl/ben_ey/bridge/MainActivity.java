@@ -100,56 +100,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if (position == 1) {
-                return new ChatActivity();
-            } else {
-                return PlaceholderFragment.newInstance(position + 1);
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    }
-
-
-
-    public static class PlaceholderFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-
-        }
-
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-
-            View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
-            return rootView;
-        }
-    }
-
-
-
+//    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+//
+//        public SectionsPagerAdapter(FragmentManager fm) {
+//            super(fm);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            if (position == 1) {
+//                return new ChatActivity();
+//            } else {
+//                return PlaceholderFragment.newInstance(position + 1);
+//            }
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return 3;
+//        }
+//    }
+//
+//
+//
+//    public static class PlaceholderFragment extends Fragment {
+//
+//        private static final String ARG_SECTION_NUMBER = "section_number";
+//
+//        public static PlaceholderFragment newInstance(int sectionNumber) {
+//            PlaceholderFragment fragment = new PlaceholderFragment();
+//            Bundle args = new Bundle();
+//            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//            fragment.setArguments(args);
+//            return fragment;
+//        }
+//
+//        public PlaceholderFragment() {
+//
+//        }
+//
+//
+//        @Override
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                Bundle savedInstanceState) {
+//
+//            View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
+//            return rootView;
+//        }
+//    }
 }
