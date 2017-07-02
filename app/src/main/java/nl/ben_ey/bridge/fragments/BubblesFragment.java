@@ -1,9 +1,11 @@
 package nl.ben_ey.bridge.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,35 +22,55 @@ import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
  * Created by Ben on 1-6-2017.
  */
 
-public class BubblesFragment extends Fragment {
-
-    Activity referenceActivity;
-    View parentHolder;
+public class BubblesFragment extends Fragment
+{
+    private FragmentActivity listener;
+    private View layoutView;
 
     private int counter;
+    private ConstraintLayout bubblesRoot;
+    private ConstraintLayout centreBtnContainer;
+    private BtnBounceInterpolator interpolator;
+    private Animation centreBtnAnimation;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
-        // Set the reference activity and inflate the layout for this fragment
-        referenceActivity = getActivity();
-        parentHolder = inflater.inflate(R.layout.fragment_bubbles, container, false);
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        if (context instanceof Activity)
+        {
+            this.listener = (FragmentActivity) context;
+        }
+    }
 
-        // Get the root container
-        ConstraintLayout bubblesRoot =
-                (ConstraintLayout) parentHolder.findViewById(R.id.pick_bubbles_container);
 
-        // Get the centre button container
-        ConstraintLayout centreBtnContainer =
-                (ConstraintLayout) parentHolder.findViewById(R.id.centre_bubble);
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
 
         // Set up the animation
-        final Animation centreBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
-                R.anim.bubble_bounce);
+        centreBtnAnimation = AnimationUtils.loadAnimation(listener, R.anim.bubble_bounce);
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         //  Higher amplitude means more pronounced bounces
         //  Higher frequency means more wobbles during the animation
-        BtnBounceInterpolator interpolator = new BtnBounceInterpolator(0.2, 20);
+        interpolator = new BtnBounceInterpolator(0.2, 20);
+    }
+
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance)
+    {
+        // Set the reference activity and inflate the layout for this fragment
+        layoutView = inflater.inflate(R.layout.fragment_bubbles, container, false);
+
+        // Get the root container
+        bubblesRoot = (ConstraintLayout) layoutView.findViewById(R.id.pick_bubbles_container);
+
+        // Get the centre button container
+        centreBtnContainer = (ConstraintLayout) layoutView.findViewById(R.id.centre_bubble);
 
         // Couple the interpolator to the animation
         centreBtnAnimation.setInterpolator(interpolator);
@@ -57,6 +79,14 @@ public class BubblesFragment extends Fragment {
         //centreBtn.startAnimation(centreBtnAnimation);
         centreBtnContainer.startAnimation(centreBtnAnimation);
 
+        // Return the inflated layout
+        return layoutView;
+    }
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
 
@@ -66,7 +96,8 @@ public class BubblesFragment extends Fragment {
 
         // Get ever child of the bubblesrRoot constraintlayout and put it in the
         // arraylist
-        for (counter = 0; counter < bubblesRoot.getChildCount(); counter++) {
+        for (counter = 0; counter < bubblesRoot.getChildCount(); counter++)
+        {
             pickBubblesList.add(bubblesRoot.getChildAt(counter));
 
             // Set up a randomizer
@@ -74,8 +105,9 @@ public class BubblesFragment extends Fragment {
 
             // Create a bouncing animation with randomized factors fore very buttonpick
             // view and apply it
-            for (View btn : pickBubblesList) {
-                Animation pickBtnAnimation = AnimationUtils.loadAnimation(referenceActivity,
+            for (View btn : pickBubblesList)
+            {
+                Animation pickBtnAnimation = AnimationUtils.loadAnimation(listener,
                         R.anim.bubble_bounce);
 
                 pickBtnAnimation.setStartOffset(randomStart.nextInt(1000) + 700);
@@ -85,16 +117,24 @@ public class BubblesFragment extends Fragment {
                 btn.startAnimation(pickBtnAnimation);
             }
         }
-
-        // Return the inflated layout
-        return parentHolder;
     }
 
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        this.listener = null;
+        this.layoutView = null;
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+    }
 }
-
-
-
-
 
 
 
