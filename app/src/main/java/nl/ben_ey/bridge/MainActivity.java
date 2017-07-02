@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         fManger = getSupportFragmentManager();
 
-        // TODO: Set up back navigation from chat main
         // TODO: Bundle data from bubble or list-item to chat
+        // TODO: Stop the bubble animation from playing every time
         // TODO: Set isMine back to user and remove placeholder convo
         // TODO: Invert launcher icon and create round version
 

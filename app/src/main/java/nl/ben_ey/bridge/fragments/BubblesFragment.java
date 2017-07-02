@@ -44,7 +44,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onAttach(Context context)
     {
-        Log.wtf("Ran method", "onAttach");
+        // Log.wtf("Ran method", "onAttach");
         super.onAttach(context);
         if (context instanceof Activity)
         {
@@ -56,7 +56,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        Log.wtf("Ran method", "onCreate");
+        // Log.wtf("Ran method", "onCreate");
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
 
@@ -74,7 +74,7 @@ public class BubblesFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        Log.wtf("Ran method", "onCreateView");
+        // Log.wtf("Ran method", "onCreateView");
 
         // Set the reference activity and inflate the layout for this fragment
         layoutView = inflater.inflate(R.layout.fragment_bubbles, container, false);
@@ -100,7 +100,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState)
     {
-        Log.wtf("Ran method", "onViewCreated");
+        // Log.wtf("Ran method", "onViewCreated");
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
 
@@ -153,7 +153,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onDetach()
     {
-        Log.wtf("Ran method", "onDetach");
+        // Log.wtf("Ran method", "onDetach");
         super.onDetach();
         this.listener = null;
         this.layoutView = null;
@@ -163,7 +163,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
-        Log.wtf("Ran method", "onActivityCreated");
+        // Log.wtf("Ran method", "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 }

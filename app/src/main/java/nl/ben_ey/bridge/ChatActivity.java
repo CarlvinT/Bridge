@@ -3,12 +3,14 @@ package nl.ben_ey.bridge;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,7 +25,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton msg_send;
     private TextView userName;
     private TextView userDistance;
-    private String userOne = "Yo money", userTwo = "Swalala";
+    private final String userOne = "Yo money", userTwo = "Swalala";
+    private Toolbar navBlock;
     private Random random;
     private static ArrayList<ChatMessage> chatList;
     private static ChatAdapter chatAdapter;
@@ -38,9 +41,18 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         msg_input = (EditText) findViewById(R.id.chat_message_input);
         msg_send = (ImageButton) findViewById(R.id.send_button);
         msgListView = (ListView) findViewById(R.id.chat_msg_list);
+        navBlock = (Toolbar) findViewById(R.id.toolbar);
 
-        // Fill the username and distance with the data received from the
-        // intent
+        // Setup the back button on top of the UI to bring the user
+        // back when they click on it
+        navBlock.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        // Fill the username and distance with the data received from the intent
         Intent intent = getIntent();
         userName = (TextView) findViewById(R.id.chat_user_name);
         userName.setText(intent.getStringExtra("user_name"));
