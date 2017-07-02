@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
         fManger = getSupportFragmentManager();
 
+        // TODO: Set up navigation
+        // TODO: Invert launcher icon and create round version
+
         if (savedInstanceState != null) {
             Log.wtf("Rebuilt", "Fragment already exists");
         } else {
