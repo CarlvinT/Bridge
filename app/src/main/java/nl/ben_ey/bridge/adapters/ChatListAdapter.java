@@ -21,6 +21,8 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
     private Context context;
     private int layoutResourceId;
     private ChatListItem data[] = null;
+    private String userName;
+    private String userDistance;
 
     public ChatListAdapter(Context context, int layoutResourceId, ChatListItem data[]) {
         super(context, layoutResourceId, data);
@@ -56,7 +58,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
 
         }
 
-        ChatListItem chatListItem = data[position];
+        final ChatListItem chatListItem = data[position];
         String userDistanceString = chatListItem.getDistance() + " " +
                 context.getResources().getString(R.string.chatUserDistance);
 
@@ -68,6 +70,12 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, ChatActivity.class);
+
+                userName = chatListItem.getName();
+                userDistance = chatListItem.getDistance();
+
+                i.putExtra("user_name", userName);
+                i.putExtra("user_distance", userDistance);
                 context.startActivity(i);
             }
         });
