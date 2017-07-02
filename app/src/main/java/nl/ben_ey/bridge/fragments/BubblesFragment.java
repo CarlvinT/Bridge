@@ -2,19 +2,25 @@ package nl.ben_ey.bridge.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import nl.ben_ey.bridge.ChatActivity;
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
 
@@ -32,10 +38,13 @@ public class BubblesFragment extends Fragment
     private ConstraintLayout centreBtnContainer;
     private BtnBounceInterpolator interpolator;
     private Animation centreBtnAnimation;
+    private String userName;
+    private String userDistance;
 
     @Override
     public void onAttach(Context context)
     {
+        Log.wtf("Ran method", "onAttach");
         super.onAttach(context);
         if (context instanceof Activity)
         {
@@ -47,7 +56,9 @@ public class BubblesFragment extends Fragment
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        Log.wtf("Ran method", "onCreate");
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
 
         // Set up the animation
         centreBtnAnimation = AnimationUtils.loadAnimation(listener, R.anim.bubble_bounce);
@@ -61,8 +72,10 @@ public class BubblesFragment extends Fragment
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
+        Log.wtf("Ran method", "onCreateView");
+
         // Set the reference activity and inflate the layout for this fragment
         layoutView = inflater.inflate(R.layout.fragment_bubbles, container, false);
 
@@ -87,6 +100,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState)
     {
+        Log.wtf("Ran method", "onViewCreated");
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
 
@@ -103,7 +117,7 @@ public class BubblesFragment extends Fragment
             // Set up a randomizer
             Random randomStart = new Random();
 
-            // Create a bouncing animation with randomized factors fore very buttonpick
+            // Create a bouncing animation with randomized factors for every buttonpick
             // view and apply it
             for (View btn : pickBubblesList)
             {
@@ -115,6 +129,22 @@ public class BubblesFragment extends Fragment
 
                 pickBtnAnimation.setInterpolator(interpolator);
                 btn.startAnimation(pickBtnAnimation);
+
+                final ImageButton button = (ImageButton)((ViewGroup) btn).getChildAt(0);
+                final TextView textPlate = (TextView)((ViewGroup) btn).getChildAt(1);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(listener, ChatActivity.class);
+
+                        userName = textPlate.getText().toString();
+                        userDistance = "12";
+
+                        i.putExtra("user_name", userName);
+                        i.putExtra("user_distance", userDistance);
+                        listener.startActivity(i);
+                    }
+                });
             }
         }
     }
@@ -123,6 +153,7 @@ public class BubblesFragment extends Fragment
     @Override
     public void onDetach()
     {
+        Log.wtf("Ran method", "onDetach");
         super.onDetach();
         this.listener = null;
         this.layoutView = null;
@@ -132,9 +163,20 @@ public class BubblesFragment extends Fragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
+        Log.wtf("Ran method", "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

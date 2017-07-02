@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             final FragmentTransaction fTransa = fManger.beginTransaction();
-            fTransa.replace(R.id.fragment_container, nextFragment).addToBackStack(null).commit();
+            fTransa.replace(R.id.fragment_container, nextFragment).commit();
 
             return true;
         }
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         fManger = getSupportFragmentManager();
 
-        // TODO: Set up navigation from bubbles to chat
         // TODO: Set up back navigation from chat main
         // TODO: Bundle data from bubble or list-item to chat
+        // TODO: Set isMine back to user and remove placeholder convo
         // TODO: Invert launcher icon and create round version
 
         if (savedInstanceState != null) {

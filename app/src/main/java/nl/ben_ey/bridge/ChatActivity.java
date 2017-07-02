@@ -1,5 +1,6 @@
 package nl.ben_ey.bridge;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +21,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText msg_input;
     private ImageButton msg_send;
+    private TextView userName;
+    private TextView userDistance;
     private String userOne = "Yo money", userTwo = "Swalala";
     private Random random;
     private static ArrayList<ChatMessage> chatList;
@@ -34,6 +38,18 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         msg_input = (EditText) findViewById(R.id.chat_message_input);
         msg_send = (ImageButton) findViewById(R.id.send_button);
         msgListView = (ListView) findViewById(R.id.chat_msg_list);
+
+        // Fill the username and distance with the data received from the
+        // intent
+        Intent intent = getIntent();
+        userName = (TextView) findViewById(R.id.chat_user_name);
+        userName.setText(intent.getStringExtra("user_name"));
+
+        userDistance = (TextView) findViewById(R.id.chat_user_distance);
+        final String userDistanceString = intent.getStringExtra("user_distance") + " " +
+                getResources().getString(R.string.chatUserDistance);
+
+        userDistance.setText(userDistanceString);
 
         // Set an onClickListener on the message send button. Because we're
         // implementing the OnClickListener interface we can just type 'this' here
@@ -69,7 +85,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             public void onGlobalLayout() {
                 msg_send.requestLayout();
                 msg_send.getLayoutParams().height = msg_input.getHeight();
-                // observer.removeGlobalOnLayoutListener(this);
             }
         });
     }
