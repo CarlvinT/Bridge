@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         fManger = getSupportFragmentManager();
 
         // TODO: Invert launcher icon and create  round version
+        //      HAHA jokes on you! I didn't invert it. I made a better one
+        //                                                  - Ben
 
         if (savedInstanceState != null) {
             Log.wtf("Rebuilt", "Fragment already exists");
