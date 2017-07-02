@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position == 1) {
-                return new ChatFragment();
+                return new ChatActivity();
             } else {
                 return PlaceholderFragment.newInstance(position + 1);
             }

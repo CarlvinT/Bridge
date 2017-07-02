@@ -2,8 +2,166 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nl.ben_ey.bridge.ChatActivity">
+    android:background="@color/colorPrimary">
+
+
+    <ListView
+        android:id="@+id/chat_msg_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="0dp"
+        android:cacheColorHint="@color/colorPrimary"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:paddingTop="150dp"
+        android:requiresFadingEdge="vertical"
+        android:smoothScrollbar="true"
+        app:layout_constraintBottom_toTopOf="@+id/chat_message_input"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496" />
+
+    <ImageView
+        android:id="@+id/top_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/topBarCtDsc"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_bar_square" />
+
+    <ImageView
+        android:id="@+id/chat_profile_pic"
+        android:layout_width="65dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/chatProfilePicCtDsc"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:tint="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="@+id/top_bar"
+        app:layout_constraintRight_toRightOf="@+id/top_bar"
+        app:layout_constraintTop_toTopOf="@+id/top_bar"
+        app:layout_constraintVertical_bias="0.23000002"
+        app:srcCompat="@drawable/ic_profile_activity_icon" />
+
+    <TextView
+        android:id="@+id/chat_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="21dp"
+        android:gravity="end"
+        android:text="@string/chatUserName"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
+        app:layout_constraintRight_toLeftOf="@+id/chat_profile_pic"
+        app:layout_constraintTop_toTopOf="@+id/top_bar" />
+
+    <TextView
+        android:id="@+id/chat_user_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/chatUserDistance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textColor="@android:color/background_light"
+        android:textSize="10sp"
+        app:layout_constraintRight_toLeftOf="@+id/chat_profile_pic"
+        app:layout_constraintTop_toBottomOf="@+id/chat_user_name" />
+
+    <EditText
+        android:id="@+id/chat_message_input"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginStart="35dp"
+        android:background="@drawable/message_input"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="@string/chat_message_input_hint"
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:maxLines="6"
+        android:padding="10dp"
+        android:textColor="@color/chatUserTextColor"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/send_button_container"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        app:layout_constraintLeft_toRightOf="@+id/chat_message_input"
+        app:layout_constraintTop_toTopOf="@+id/chat_message_input">
+
+        <ImageButton
+            android:id="@+id/send_button"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/sendBtnCtDsc"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/message_send" />
+
+        <ImageView
+            android:id="@+id/send_icon"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/sendIconCtDsc"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chat_send_icon" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back_btn" />
 
 </android.support.constraint.ConstraintLayout>
