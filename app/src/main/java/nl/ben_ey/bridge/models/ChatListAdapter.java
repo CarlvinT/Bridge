@@ -2,12 +2,15 @@ package nl.ben_ey.bridge.models;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import nl.ben_ey.bridge.ChatActivity;
 import nl.ben_ey.bridge.R;
 
 /**
@@ -60,6 +63,15 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         holder.userName.setText(chatListItem.getName());
         holder.userDistance.setText(userDistanceString);
         holder.userLastOnline.setText(chatListItem.getLastOnline());
+
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.wtf("Hi", "there");
+                Intent intent = new Intent(context, ChatActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         return row;
 
