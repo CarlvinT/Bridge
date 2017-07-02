@@ -2,13 +2,18 @@ package nl.ben_ey.bridge.models;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import nl.ben_ey.bridge.ChatActivity;
 import nl.ben_ey.bridge.R;
+import nl.ben_ey.bridge.fragments.ChatFragment;
 
 /**
  * Created by Ben on 22/06/2017.
@@ -60,6 +65,14 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         holder.userName.setText(chatListItem.getName());
         holder.userDistance.setText(userDistanceString);
         holder.userLastOnline.setText(chatListItem.getLastOnline());
+
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ChatActivity.class);
+                context.startActivity(i);
+            }
+        });
 
         return row;
 
