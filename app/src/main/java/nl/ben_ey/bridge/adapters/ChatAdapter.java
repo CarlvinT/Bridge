@@ -46,7 +46,7 @@ public class ChatAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ChatMessage message = (ChatMessage) chatMessageList.get(position);
+        ChatMessage message = chatMessageList.get(position);
         View view = convertView;
 
         if (convertView == null) {

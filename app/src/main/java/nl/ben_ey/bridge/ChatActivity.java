@@ -1,8 +1,8 @@
 package nl.ben_ey.bridge;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,17 +18,17 @@ import nl.ben_ey.bridge.adapters.ChatAdapter;
 import nl.ben_ey.bridge.models.ChatMessage;
 import nl.ben_ey.bridge.models.CommonMethods;
 
-public class ChatActivity extends AppCompatActivity implements View.OnClickListener{
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static ArrayList<ChatMessage> chatList;
+    private static ChatAdapter chatAdapter;
+    private final String userOne = "Yo money", userTwo = "Swalala";
     private EditText msg_input;
     private ImageButton msg_send;
     private TextView userName;
     private TextView userDistance;
-    private final String userOne = "Yo money", userTwo = "Swalala";
     private Toolbar navBlock;
     private Random random;
-    private static ArrayList<ChatMessage> chatList;
-    private static ChatAdapter chatAdapter;
     private ListView msgListView;
 
     @Override

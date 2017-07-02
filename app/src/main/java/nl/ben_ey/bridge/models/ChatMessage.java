@@ -8,10 +8,10 @@ import java.util.Random;
  */
 
 public class ChatMessage {
+    public boolean isMine;
     private String body, sender, receiver, senderName;
     private String Date, Time;
     private String msgid;
-    public boolean isMine;
 
     public ChatMessage(String sender, String receiver, String messageString,
             String ID, boolean isMine) {
@@ -28,12 +28,12 @@ public class ChatMessage {
         msgid += "-" + String.format(Locale.getDefault(), "%02d", new Random().nextInt(100));
     }
 
-    public void setBody(String body) {
-        this.body = body;
-    }
-
     public String getBody(){
         return this.body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public void setDate(String date) {

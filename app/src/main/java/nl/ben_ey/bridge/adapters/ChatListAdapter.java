@@ -39,8 +39,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         View row = convertView;
         ChatHolder holder = null;
 
-        if (row == null)
-        {
+        if (row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
@@ -51,11 +50,8 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
 
             row.setTag(holder);
 
-        }
-        else
-        {
+        } else {
             holder = (ChatHolder) row.getTag();
-
         }
 
         final ChatListItem chatListItem = data[position];

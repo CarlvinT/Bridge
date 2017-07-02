@@ -17,7 +17,6 @@ import nl.ben_ey.bridge.models.ChatListItem;
  */
 
 public class ChatlistFragment extends Fragment {
-
     private ListView chatListView;
 
     private Activity activity;
@@ -26,7 +25,7 @@ public class ChatlistFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
 
         activity = getActivity();
         view = inflater.inflate(R.layout.fragment_chatlist, container, false);

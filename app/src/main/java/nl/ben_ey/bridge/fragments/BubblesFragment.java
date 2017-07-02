@@ -3,12 +3,10 @@ package nl.ben_ey.bridge.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,7 +38,6 @@ public class BubblesFragment extends Fragment
     private Animation centreBtnAnimation;
     private String userName;
     private String userDistance;
-    boolean runnedOnce;
 
     @Override
     public void onAttach(Context context)
@@ -168,19 +164,6 @@ public class BubblesFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
