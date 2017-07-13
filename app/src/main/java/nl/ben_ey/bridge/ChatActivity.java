@@ -10,6 +10,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -30,6 +37,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private Toolbar navBlock;
     private Random random;
     private ListView msgListView;
+    private DatabaseReference mDatabaseMessages;
+    private DatabaseReference mDatabaseFlex;
+    private String fBuserId;
+    private String fBuserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +52,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         msg_send = (ImageButton) findViewById(R.id.send_button);
         msgListView = (ListView) findViewById(R.id.chat_msg_list);
         navBlock = (Toolbar) findViewById(R.id.toolbar);
+        mDatabaseMessages = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Messages")
+                .child("Message");
 
         // Setup the back button on top of the UI to bring the user
         // back when they click on it
@@ -61,6 +77,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 getResources().getString(R.string.chatUserDistance);
 
         userDistance.setText(userDistanceString);
+
+
+        // Get FireBase user id and email from the Intent
+        fBuserId = intent.getStringExtra("user_id");
+        fBuserEmail = intent.getStringExtra("user_email");
+
+        // Toast.makeText(this, "User ID: " + fBuserId + " | User Email: " + fBuserEmail, Toast.LENGTH_LONG).show();
 
         // Set an onClickListener on the message send button. Because we're
         // implementing the OnClickListener interface we can just type 'this' here
@@ -98,23 +121,78 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 msg_send.getLayoutParams().height = msg_input.getHeight();
             }
         });
+
+
+
+
+        mDatabaseMessages.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                String value = dataSnapshot.getValue().toString();
+                String message = value;
+
+                final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
+                        "" + random.nextInt(1000), true);
+                chatMessage.setMsgID();
+                chatMessage.setBody(message);
+                chatMessage.setDate(CommonMethods.getCurrentDate());
+                chatMessage.setTime(CommonMethods.getCurrentTime());
+                chatAdapter.add(chatMessage);
+                chatAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     // This function will format a ChatMessage object and add it to the adapter
     public void sendTextMessage(View v) {
-        String message = msg_input.getEditableText().toString();
-        if (!message.equalsIgnoreCase("")) {
-            final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-                    "" + random.nextInt(1000), true);
-            chatMessage.setMsgID();
-            chatMessage.setBody(message);
-            chatMessage.setDate(CommonMethods.getCurrentDate());
-            chatMessage.setTime(CommonMethods.getCurrentTime());
-            msg_input.setText("");
-            chatAdapter.add(chatMessage);
-            chatAdapter.notifyDataSetChanged();
 
-        }
+//        String message = msg_input.getEditableText().toString();
+//        if (!message.equalsIgnoreCase("")) {
+//            final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
+//                    "" + random.nextInt(1000), true);
+//            chatMessage.setMsgID();
+//            chatMessage.setBody(message);
+//            chatMessage.setDate(CommonMethods.getCurrentDate());
+//            chatMessage.setTime(CommonMethods.getCurrentTime());
+//            msg_input.setText("");
+//            chatAdapter.add(chatMessage);
+//            chatAdapter.notifyDataSetChanged();
+//
+//            chatList.add(new ChatMessage(userOne, userTwo, message, "" + random.nextInt(1000), true));
+//        }
+
+        mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Message");
+        mDatabaseFlex.push().setValue(msg_input.getText().toString().trim());
+
+        mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Sender");
+        mDatabaseFlex.push().setValue(fBuserEmail);
+        msg_input.setText("");
+
+
+        /*HashMap<String, String> dataMap = new HashMap<String, String>();
+        dataMap.put("Name", userEmail);
+        dataMap.put("Message", mMessage.getText().toString().trim());*/
     }
 
 

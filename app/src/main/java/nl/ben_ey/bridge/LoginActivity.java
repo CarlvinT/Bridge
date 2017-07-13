@@ -1,10 +1,13 @@
 package nl.ben_ey.bridge;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
 
         if (user == null) {
             Toast.makeText(LoginActivity.this, "not signed in",
@@ -50,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "signed in",
                     Toast.LENGTH_LONG).show();
 
+            setUserInfo();
             startActivity(i);
         }
     }
@@ -74,8 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                                 user = mAuth.getCurrentUser();
                                 // getUserInformation();
                                 Toast.makeText(LoginActivity.this, "Welcome login succesfull ",
-                                        Toast.LENGTH_LONG).show();
+                                        Toast.LENGTH_SHORT).show();
 
+                                setUserInfo();
                                 startActivity(i);
 
                             } else {
@@ -89,6 +94,17 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
+    }
 
+
+    public void setUserInfo()
+    {
+        SharedPreferences sharedPrefs = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        Log.wtf("User id", user.getUid());
+
+        editor.putString(getString(R.string.saved_user_id), user.getUid());
+        editor.commit();
     }
 }

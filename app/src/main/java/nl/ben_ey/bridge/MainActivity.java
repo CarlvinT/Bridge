@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import nl.ben_ey.bridge.fragments.BubblesFragment;
 import nl.ben_ey.bridge.fragments.ChatlistFragment;
 import nl.ben_ey.bridge.fragments.ProfileFragment;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment nextFragment;
     private FragmentManager fManger;
     private Intent chatView;
+    private FirebaseAuth mAuth;
 
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavigationListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         chatView = new Intent(this, ChatActivity.class);
         chatView.putExtra("user_name", "Stevie Wonder");
         chatView.putExtra("user_distance", "69");
+
 
         // Set up the switching between fragments via the bottom navigation
         BottomNavigationView bNavigation = (BottomNavigationView) findViewById(R.id.navigation);

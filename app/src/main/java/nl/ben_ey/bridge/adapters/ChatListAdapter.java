@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import nl.ben_ey.bridge.ChatActivity;
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.models.ChatListItem;
@@ -23,6 +26,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
     private ChatListItem data[] = null;
     private String userName;
     private String userDistance;
+    private FirebaseAuth mAuth;
 
     public ChatListAdapter(Context context, int layoutResourceId, ChatListItem data[]) {
         super(context, layoutResourceId, data);
@@ -72,6 +76,16 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
 
                 i.putExtra("user_name", userName);
                 i.putExtra("user_distance", userDistance);
+
+                mAuth = FirebaseAuth.getInstance();
+                FirebaseUser fBuser = mAuth.getCurrentUser();
+
+                final String FBUSER_UID = fBuser.getUid();
+                final String FBUSER_EMAIL = fBuser.getEmail();
+
+                i.putExtra("user_id", FBUSER_UID);
+                i.putExtra("user_email", FBUSER_EMAIL);
+
                 context.startActivity(i);
             }
         });

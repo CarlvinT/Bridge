@@ -42,4 +42,5 @@
     <string name="login_password_hint">Wachtwoord</string>
     <string name="action_sign_out">uitloggen</string>
     <string name="login_sign_in">Inloggen</string>
+    <string name="saved_user_id">user_u_id</string>
 </resources>
