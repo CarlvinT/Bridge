@@ -25,11 +25,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChatActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_login"
-            android:theme="@style/FullscreenTheme"></activity>
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
