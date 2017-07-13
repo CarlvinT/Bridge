@@ -38,6 +38,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="login_name_hint">Gebruikersnaam</string>
+    <string name="login_name_hint">E-mail</string>
     <string name="login_password_hint">Wachtwoord</string>
+    <string name="action_sign_out">uitloggen</string>
+    <string name="login_sign_in">Inloggen</string>
 </resources>
