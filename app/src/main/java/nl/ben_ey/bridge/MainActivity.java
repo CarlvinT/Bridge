@@ -1,6 +1,7 @@
 package nl.ben_ey.bridge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment nextFragment;
     private FragmentManager fManger;
+    private Intent chatView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavigationListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, bFrag).commit();
         }
+
+        chatView = new Intent(this, ChatActivity.class);
+        chatView.putExtra("user_name", "Stevie Wonder");
+        chatView.putExtra("user_distance", "69");
 
         // Set up the switching between fragments via the bottom navigation
         BottomNavigationView bNavigation = (BottomNavigationView) findViewById(R.id.navigation);
