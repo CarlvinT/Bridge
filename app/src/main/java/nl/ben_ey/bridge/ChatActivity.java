@@ -29,7 +29,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private static ArrayList<ChatMessage> chatList;
     private static ChatAdapter chatAdapter;
-    private final String userOne = "Yo money", userTwo = "Swalala";
+    private final String userOne = "Yo money";
+    private final String userTwo = "Swalala";
     private EditText msg_input;
     private ImageButton msg_send;
     private TextView userName;
@@ -52,6 +53,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         msg_send = (ImageButton) findViewById(R.id.send_button);
         msgListView = (ListView) findViewById(R.id.chat_msg_list);
         navBlock = (Toolbar) findViewById(R.id.toolbar);
+
         mDatabaseMessages = FirebaseDatabase
                 .getInstance()
                 .getReference()
