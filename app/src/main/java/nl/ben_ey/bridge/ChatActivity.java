@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -39,6 +40,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private Random random;
     private ListView msgListView;
     private DatabaseReference mDatabaseMessages;
+    private DatabaseReference mDatabaseSenders;
     private DatabaseReference mDatabaseFlex;
     private String fBuserId;
     private String fBuserEmail;
@@ -59,6 +61,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child("Messages")
                 .child("Message");
+
+        mDatabaseSenders = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("Messages")
+                .child("Sender");
 
         // Setup the back button on top of the UI to bring the user
         // back when they click on it
@@ -125,23 +133,17 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
+        final ArrayList<String> msgBlocks = new ArrayList<>();
+        final ArrayList<String> senderBlocks = new ArrayList<>();
+
+
 
 
         mDatabaseMessages.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                String value = dataSnapshot.getValue().toString();
-                String message = value;
-
-                final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-                        "" + random.nextInt(1000), true);
-                chatMessage.setMsgID();
-                chatMessage.setBody(message);
-                chatMessage.setDate(CommonMethods.getCurrentDate());
-                chatMessage.setTime(CommonMethods.getCurrentTime());
-                chatAdapter.add(chatMessage);
-                chatAdapter.notifyDataSetChanged();
+                String message = dataSnapshot.getValue().toString();
+                msgBlocks.add(message);
             }
 
             @Override
@@ -164,6 +166,58 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+
+        mDatabaseSenders.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String sender = dataSnapshot.getValue().toString();
+                senderBlocks.add(sender);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        int count = 0;
+        for(String msg : msgBlocks) {
+            System.out.println(senderBlocks.get(count) + " sent the following message: " + msg);
+            count++;
+        }
+
+        System.out.println("done");
+
+
+
+//
+//        final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
+//                "" + random.nextInt(1000), true);
+//        chatMessage.setMsgID();
+//        chatMessage.setBody(message);
+//        chatMessage.setDate(CommonMethods.getCurrentDate());
+//        chatMessage.setTime(CommonMethods.getCurrentTime());
+//        chatAdapter.add(chatMessage);
+//        chatAdapter.notifyDataSetChanged();
+
+
+
     }
 
     // This function will format a ChatMessage object and add it to the adapter
