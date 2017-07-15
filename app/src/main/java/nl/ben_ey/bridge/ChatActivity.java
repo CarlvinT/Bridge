@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +46,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private DatabaseReference mDatabaseFlex;
     private String fBuserId;
     private String fBuserEmail;
+    private FirebaseAuth mAuth;
+    private String uEmail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 .getReference()
                 .child("Messages")
                 .child("Message");
+
+        mAuth = FirebaseAuth
+                .getInstance();
 
         mDatabaseSenders = FirebaseDatabase
                 .getInstance()
@@ -143,6 +151,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String message = dataSnapshot.getValue().toString();
+
                 final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
                         "" + random.nextInt(1000), true);
                 chatMessage.setMsgID();
@@ -176,7 +185,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-        mDatabaseSenders.addChildEventListener(new ChildEventListener() {
+        /*mDatabaseSenders.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String sender = dataSnapshot.getValue().toString();
@@ -219,6 +228,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     // This function will format a ChatMessage object and add it to the adapter
     public void sendTextMessage(View v) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        uEmail = user.getEmail();
 
 //        String message = msg_input.getEditableText().toString();
 //        if (!message.equalsIgnoreCase("")) {
@@ -235,18 +246,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //            chatList.add(new ChatMessage(userOne, userTwo, message, "" + random.nextInt(1000), true));
 //        }
 
-        String message = fBuserEmail + ": " + msg_input.getText().toString().trim();
+        String message = uEmail + ": " + msg_input.getText().toString().trim();
         mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Message");
         mDatabaseFlex.push().setValue(message);
-
-        /*mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Sender");
-        mDatabaseFlex.push().setValue(fBuserEmail);*/
         msg_input.setText("");
-
-
-        /*HashMap<String, String> dataMap = new HashMap<String, String>();
-        dataMap.put("Name", userEmail);
-        dataMap.put("Message", mMessage.getText().toString().trim());*/
     }
 
 

@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import nl.ben_ey.bridge.LoginActivity;
 import nl.ben_ey.bridge.MainActivity;
@@ -28,6 +30,8 @@ public class ProfileFragment extends Fragment {
     private FragmentActivity listener;
     private Button mLogoutBtn;
     private Intent i;
+    private TextView mLoggedIn;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onAttach(Context context) {
@@ -48,7 +52,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         mLogoutBtn = (Button) listener.findViewById(R.id.logout_button);
+        mLoggedIn = (TextView) listener.findViewById(R.id.vUser);
         i = new Intent(listener, LoginActivity.class);
+        mAuth = FirebaseAuth.getInstance();
 
         mLogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +62,10 @@ public class ProfileFragment extends Fragment {
                 logoutUser();
             }
         });
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        mLoggedIn.setText("Current User: " + user.getEmail());
 
     }
 

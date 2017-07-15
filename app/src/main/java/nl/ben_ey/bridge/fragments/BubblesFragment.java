@@ -26,7 +26,7 @@ import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
  * Created by Ben on 1-6-2017.
  */
 
-public class BubblesFragment extends Fragment
+public class    BubblesFragment extends Fragment
 {
     private FragmentActivity listener;
     private View layoutView;
