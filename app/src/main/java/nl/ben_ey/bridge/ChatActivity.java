@@ -206,6 +206,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
 //
 //        final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
 //                "" + random.nextInt(1000), true);
