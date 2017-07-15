@@ -143,7 +143,15 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String message = dataSnapshot.getValue().toString();
-                msgBlocks.add(message);
+                final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
+                        "" + random.nextInt(1000), true);
+                chatMessage.setMsgID();
+                chatMessage.setBody(message);
+                chatMessage.setDate(CommonMethods.getCurrentDate());
+                chatMessage.setTime(CommonMethods.getCurrentTime());
+                chatAdapter.add(chatMessage);
+                chatAdapter.notifyDataSetChanged();
+                //msgBlocks.add(message);
             }
 
             @Override
@@ -196,26 +204,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        int count = 0;
+        /*int count = 0;
         for(String msg : msgBlocks) {
             System.out.println(senderBlocks.get(count) + " sent the following message: " + msg);
             count++;
         }
 
-        System.out.println("done");
+        System.out.println("done");*/
 
-
-
-
-//
-//        final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-//                "" + random.nextInt(1000), true);
-//        chatMessage.setMsgID();
-//        chatMessage.setBody(message);
-//        chatMessage.setDate(CommonMethods.getCurrentDate());
-//        chatMessage.setTime(CommonMethods.getCurrentTime());
-//        chatAdapter.add(chatMessage);
-//        chatAdapter.notifyDataSetChanged();
 
 
 
@@ -239,11 +235,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 //            chatList.add(new ChatMessage(userOne, userTwo, message, "" + random.nextInt(1000), true));
 //        }
 
+        String message = fBuserEmail + ": " + msg_input.getText().toString().trim();
         mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Message");
-        mDatabaseFlex.push().setValue(msg_input.getText().toString().trim());
+        mDatabaseFlex.push().setValue(message);
 
-        mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Sender");
-        mDatabaseFlex.push().setValue(fBuserEmail);
+        /*mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Sender");
+        mDatabaseFlex.push().setValue(fBuserEmail);*/
         msg_input.setText("");
 
 
