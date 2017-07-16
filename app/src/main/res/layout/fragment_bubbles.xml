@@ -435,7 +435,7 @@
             fontPath="fonts/DeValencia.otf"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="You"
+            android:text="@string/username"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="48sp"
