@@ -14,7 +14,7 @@ public class ChatMessage {
     private String msgid;
 
     public ChatMessage(String sender, String receiver, String messageString,
-            String ID, boolean isMine) {
+                       String ID, boolean isMine) {
 
         this.body = messageString;
         this.isMine = isMine;
@@ -28,7 +28,7 @@ public class ChatMessage {
         msgid += "-" + String.format(Locale.getDefault(), "%02d", new Random().nextInt(100));
     }
 
-    public String getBody(){
+    public String getBody() {
         return this.body;
     }
 

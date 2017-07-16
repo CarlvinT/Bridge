@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         fManger = getSupportFragmentManager();
 
-        if (savedInstanceState != null) {
-            Log.wtf("Rebuilt", "Fragment already exists");
-        } else {
+        if (savedInstanceState == null) {
             // Start the application with the bubbles fragment active
             BubblesFragment bFrag = new BubblesFragment();
             getSupportFragmentManager().beginTransaction()
