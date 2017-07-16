@@ -28,10 +28,13 @@ public class LoginTrackerDBHandler extends SQLiteOpenHelper
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + LoginsTracker.TABLE_NAME;
 
+
+
     public LoginTrackerDBHandler(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db)

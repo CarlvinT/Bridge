@@ -1,8 +1,10 @@
 package nl.ben_ey.bridge;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +20,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import nl.ben_ey.bridge.database.LoginTrackerDBHandler;
+import nl.ben_ey.bridge.database.LoginTrackerSchema;
+import nl.ben_ey.bridge.database.LoginTrackerSchema.LoginsTracker;
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText mEmail;
     private EditText mPassword;
     private Intent i;
+    private LoginTrackerDBHandler mDbHelper;
     FirebaseUser user;
 
 
@@ -36,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.password_input);
 
         i = new Intent(this, MainActivity.class);
-
         mAuth = FirebaseAuth.getInstance();
+
+        mDbHelper = new LoginTrackerDBHandler(this);
     }
 
     @Override
@@ -96,7 +108,28 @@ public class LoginActivity extends AppCompatActivity {
 
     public void registerSignIn()
     {
+        // Roep de huidige firebase user aan
+        FirebaseUser fBuser = mAuth.getCurrentUser();
 
+        // Roep een schrijfbare versie van onze dataopslag aan
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        // Maak een kaart van de waarden waarin de kolomnamen als sleutel dienen
+        ContentValues values = new ContentValues();
+        values.put(LoginsTracker.COLUMN_NAME_USERNAME, fBuser.getEmail());
+        values.put(LoginsTracker.COLUMN_NAME_TIME, getDateTime());
+
+        // Maak van de content values een rij en stop deze in de database
+        db.insert(LoginsTracker.TABLE_NAME, null, values);
+
+    }
+
+
+    private String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
 }
