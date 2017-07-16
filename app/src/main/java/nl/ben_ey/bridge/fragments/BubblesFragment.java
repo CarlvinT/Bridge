@@ -12,8 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,6 +47,25 @@ public class    BubblesFragment extends Fragment
     private Animation centreBtnAnimation;
     private String userName;
     private String userDistance;
+
+    private DatabaseReference mDatabase;
+
+    private TextView user1;
+    private TextView user2;
+    private TextView user3;
+    private TextView user4;
+    private TextView user5;
+    private TextView user6;
+    private TextView user7;
+    private TextView user8;
+    private TextView user9;
+    private int count = 1;
+
+    TextView[] bubbles = new TextView[9];
+
+
+
+
 
     @Override
     public void onAttach(Context context)
@@ -64,7 +92,15 @@ public class    BubblesFragment extends Fragment
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         //  Higher amplitude means more pronounced bounces
         //  Higher frequency means more wobbles during the animation
-        interpolator = new BtnBounceInterpolator(0.2, 20);
+
+        mDatabase = FirebaseDatabase
+                .getInstance()
+                .getReference()
+                .child("People");
+
+
+
+
     }
 
 
@@ -88,6 +124,95 @@ public class    BubblesFragment extends Fragment
 
         // Couple the animation to the button and the text
         centreBtnContainer.startAnimation(centreBtnAnimation);
+
+        // get user text
+        user1 = (TextView) layoutView.findViewById(R.id.other_name_1);
+        user2 = (TextView) layoutView.findViewById(R.id.other_name_2);
+        user3 = (TextView) layoutView.findViewById(R.id.other_name_3);
+        user4 = (TextView) layoutView.findViewById(R.id.other_name_4);
+        user5 = (TextView) layoutView.findViewById(R.id.other_name_5);
+        user6 = (TextView) layoutView.findViewById(R.id.other_name_6);
+        user7 = (TextView) layoutView.findViewById(R.id.other_name_7);
+        user8 = (TextView) layoutView.findViewById(R.id.other_name_8);
+        user9 = (TextView) layoutView.findViewById(R.id.other_name_9);
+
+
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String data = dataSnapshot.getValue().toString();
+
+                // kijk hier niet het is echt shamefull. moest gedaan worden met een array maar het werkte niet en ik was te lazy om het te doen. -carlvin
+                if (count == 1)
+                {
+                    user1.setText(data);
+                    count = count + 1;
+
+                }
+                else if (count == 2){
+                    user2.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 3){
+                    user3.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 4){
+                    user4.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 5){
+                    user5.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 6){
+                    user6.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 7){
+                    user7.setText(data);
+                    count = count + 1;
+                }
+                else if (count == 8){
+                    user8.setText(data);
+                    count = count + 1;
+                }
+                else if(count == 9){
+                    user9.setText(data);
+                    count = 0;
+                }
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        user1.setText("hello");
+        user2.setText("Working");
+
+
+
+
 
         // Return the inflated layout
         return layoutView;
@@ -144,6 +269,7 @@ public class    BubblesFragment extends Fragment
                 });
             }
         }
+
     }
 
 
