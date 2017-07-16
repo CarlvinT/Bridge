@@ -203,8 +203,6 @@ public class    BubblesFragment extends Fragment
             }
         });
 
-        user1.setText("hello");
-        user2.setText("Working");
 
 
 

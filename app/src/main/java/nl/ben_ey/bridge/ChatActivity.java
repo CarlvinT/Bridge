@@ -146,7 +146,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
         mDatabaseMessages.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

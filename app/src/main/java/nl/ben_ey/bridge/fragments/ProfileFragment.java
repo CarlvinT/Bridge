@@ -20,6 +20,12 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import nl.ben_ey.bridge.LoginActivity;
 import nl.ben_ey.bridge.MainActivity;
@@ -43,6 +49,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private LoginTrackerDBHandler mDbHelper;
     private Cursor cursor;
+    private DatabaseReference mDatabase;
 
     @Override
     public void onAttach(Context context) {
@@ -57,6 +64,7 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
+
         user = mAuth.getCurrentUser();
         mDbHelper = new LoginTrackerDBHandler(listener);
     }
@@ -76,7 +84,62 @@ public class ProfileFragment extends Fragment {
         mLogoutBtn = (Button) listener.findViewById(R.id.logout_button);
         mLoggedIn = (TextView) listener.findViewById(R.id.vUser);
 
-        mLoggedIn.setText("Current User: " + user.getEmail());
+        //mLoggedIn.setText("Current User: " + user.getEmail());
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("Information");
+
+        class information {
+            String Description;
+            String Lastname;
+            String Name;
+
+            public String getDescription() {
+                return Description;
+            }
+
+            public String getName() {
+                return Name;
+            }
+
+            public String getLastname() {
+                return Lastname;
+            }
+        }
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String info = dataSnapshot.getValue(String.class);
+                mLoggedIn.setText("Name : "  + info);
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
         mLogoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
