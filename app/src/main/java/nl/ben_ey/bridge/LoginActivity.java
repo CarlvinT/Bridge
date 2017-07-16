@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "signed in",
                     Toast.LENGTH_LONG).show();
 
-            setUserInfo();
+            registerSignIn();
             startActivity(i);
         }
     }
@@ -80,15 +80,13 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Welcome login succesfull ",
                                         Toast.LENGTH_SHORT).show();
 
-                                setUserInfo();
+                                registerSignIn();
                                 startActivity(i);
 
                             } else {
                                 Toast.makeText(LoginActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                             }
-
-                            // ...
                         }
                     });
 
@@ -96,15 +94,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-    public void setUserInfo()
+    public void registerSignIn()
     {
-        SharedPreferences sharedPrefs = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        Log.wtf("User id", user.getUid());
-
-        editor.putString(getString(R.string.saved_user_id), user.getUid());
-        editor.commit();
     }
+
 }
