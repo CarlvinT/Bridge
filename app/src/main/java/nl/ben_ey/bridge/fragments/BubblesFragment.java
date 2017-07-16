@@ -92,18 +92,14 @@ public class    BubblesFragment extends Fragment
         // Use bounce interpolator with amplitude 0.2 and frequency 20
         //  Higher amplitude means more pronounced bounces
         //  Higher frequency means more wobbles during the animation
+        interpolator = new BtnBounceInterpolator(0.2, 20);
 
         mDatabase = FirebaseDatabase
                 .getInstance()
                 .getReference()
                 .child("People");
 
-
-
-
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
