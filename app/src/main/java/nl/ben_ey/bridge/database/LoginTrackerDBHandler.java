@@ -19,7 +19,7 @@ public class LoginTrackerDBHandler extends SQLiteOpenHelper
 
     // De sql queries voor het maken van de Database
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE" + LoginsTracker.TABLE_NAME   + "(" +
+            "CREATE TABLE " + LoginsTracker.TABLE_NAME   + " (" +
                     LoginsTracker._ID                   + " INTEGER PRIMARY KEY, " +
                     LoginsTracker.COLUMN_NAME_USERNAME  + " TEXT, " +
                     LoginsTracker.COLUMN_NAME_TIME      + " DATETIME" +
@@ -55,22 +55,3 @@ public class LoginTrackerDBHandler extends SQLiteOpenHelper
         onCreate(db);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
