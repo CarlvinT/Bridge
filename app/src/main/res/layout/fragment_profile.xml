@@ -6,17 +6,20 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:weightSum="1"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
         <TextView
             android:id="@+id/vUser"
             android:layout_width="match_parent"
-            android:layout_height="22dp"
-            android:layout_marginBottom="2dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="9"
             android:text="TextView"
             android:textAlignment="center"
             android:textSize="18sp"
@@ -42,7 +45,7 @@
     <ListView
         android:id="@+id/times_logged_in"
         android:layout_width="wrap_content"
-        android:layout_height="365dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />

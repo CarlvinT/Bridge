@@ -22,7 +22,7 @@ public class LoginTrackerDBHandler extends SQLiteOpenHelper
             "CREATE TABLE " + LoginsTracker.TABLE_NAME   + " (" +
                     LoginsTracker._ID                   + " INTEGER PRIMARY KEY, " +
                     LoginsTracker.COLUMN_NAME_USERNAME  + " TEXT, " +
-                    LoginsTracker.COLUMN_NAME_TIME      + " DATETIME" +
+                    LoginsTracker.COLUMN_NAME_TIME      + " TEXT " +
                                                         ");";
 
     private static final String SQL_DELETE_ENTRIES =
