@@ -16,7 +16,7 @@
     <string name="topBarCtDsc">Image for the top bar</string>
     <string name="chatProfilePicCtDsc">Chat profile pic</string>
     <string name="chatUserName">Kathy Peary</string>
-    <string name="chatUserDistance">kilometres away</string>
+    <string name="chatUserDistance">metres away</string>
     <string name="chatMsgInputPlaceholder">Message...</string>
     <string name="sendBtnCtDsc">Button for sending a message</string>
     <string name="sendIconCtDsc">Icon on the sending button</string>
