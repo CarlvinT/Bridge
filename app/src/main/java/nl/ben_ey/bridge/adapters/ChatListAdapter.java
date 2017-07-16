@@ -91,9 +91,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         });
 
         return row;
-
     }
-
 
     private static class ChatHolder
     {

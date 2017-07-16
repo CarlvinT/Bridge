@@ -65,17 +65,16 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "signed in",
                     Toast.LENGTH_LONG).show();
 
+            // Roep de registerSignIn functie aan die een rij aan de database
+            // toevoegd voor elke keer dat de gebruiker inlogt
             registerSignIn();
             startActivity(i);
         }
     }
 
     public void loginUser(View view) {
-
-
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
-
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
         {
@@ -125,7 +124,6 @@ public class LoginActivity extends AppCompatActivity {
         db.insert(LoginsTracker.TABLE_NAME, null, values);
 
     }
-
 
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(

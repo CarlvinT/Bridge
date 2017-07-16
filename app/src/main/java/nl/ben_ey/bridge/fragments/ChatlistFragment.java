@@ -39,7 +39,6 @@ public class ChatlistFragment extends Fragment {
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,11 +50,6 @@ public class ChatlistFragment extends Fragment {
         ChatListItem chatListItemData[] = new ChatListItem[]
         {
             new ChatListItem("Global Chat", "12", "1455"),
-            // new ChatListItem("Boris", "4", "1911"),
-            // new ChatListItem("Katy", "6", "2122"),
-            // new ChatListItem("Lida", "1", "1242"),
-            // new ChatListItem("James", "11", "1831"),
-            // new ChatListItem("Jenny", "22", "1842"),
         };
 
         ChatListAdapter adapter = new ChatListAdapter(activity, R.layout.listrow, chatListItemData);

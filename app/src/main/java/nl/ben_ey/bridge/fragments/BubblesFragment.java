@@ -177,9 +177,6 @@ public class    BubblesFragment extends Fragment
                     user9.setText(data);
                     count = 0;
                 }
-
-
-
             }
 
             @Override
@@ -206,10 +203,6 @@ public class    BubblesFragment extends Fragment
         user1.setText("hello");
         user2.setText("Working");
 
-
-
-
-
         // Return the inflated layout
         return layoutView;
     }
@@ -218,13 +211,8 @@ public class    BubblesFragment extends Fragment
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState)
     {
-        // Log.wtf("Ran method", "onViewCreated");
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
-
-        // If there's no saved instance state, counter is 0 which means that there's bubbles
-        // to create, otherwise don't create any bubbles
-
 
         // Get ever child of the bubblesrRoot constraintlayout and put it in the
         // arraylist
@@ -286,170 +274,3 @@ public class    BubblesFragment extends Fragment
         super.onActivityCreated(savedInstanceState);
     }
 }
-
-
-    //    public void imgViewEngine(Name n, DisplayMetrics mDisplay, ArrayList<Bubble> pick_items,
-//                              RelativeLayout rootContainer, LayoutInflater inflater, int try_count,
-//                              CentreBubble centreBubble){
-//
-//        // @@Todo Sommige items worden tegen de bottom navbar aangedrukt
-//        // @@Todo add animations
-//
-//        // Create the layout from file (inflate it)
-//        RelativeLayout pick_btn_container = (RelativeLayout)
-//                inflater.inflate(R.layout.pick_button, rootContainer, false);
-//
-//        // Get the display size
-//        int displayWidth = mDisplay.widthPixels;
-//        int displayHeight = mDisplay.heightPixels;
-//
-//        // Log it
-//        //Log.wtf("Display width and height", displayWidth + " " + displayHeight);
-//
-//        // Find the textfield representing the user name
-//        TextView userName = (TextView) pick_btn_container.findViewById(R.id.user_name);
-//
-//        // Set the username
-//        userName.setText(n.getName());
-//
-//        // Get the size of each bubble
-//        pick_btn_container.measure(displayWidth, displayHeight);
-//        int bubbleWidth = pick_btn_container.getMeasuredWidth();
-//        int bubbleHeight = pick_btn_container.getMeasuredHeight();
-//
-//        // Log that
-//        //Log.wtf("Bubble width and height", bubbleWidth + " " + bubbleHeight);
-//
-//        // Create a new random object
-//        Random randMargin = new Random();
-//
-//        // Create a new layout param for the bubble
-//        // het moet op de layoutparams, dus pickbtncontainerlayout in dit geval. dat zijn ook de rode vlakken hier
-//
-//        RelativeLayout.LayoutParams pick_btn_container_layout = new RelativeLayout.LayoutParams(
-//                                                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                                                        RelativeLayout.LayoutParams.WRAP_CONTENT );
-//
-//        // Set the margins
-//        // min = 0
-//        // max = display size minus widget size
-//        // @@ToDo Make sure 56dp is translated to pixels and repaplaces '100' in topmargin
-//        pick_btn_container_layout.leftMargin = randMargin.nextInt((displayWidth - bubbleWidth) + 1);
-//        pick_btn_container_layout.topMargin = randMargin.nextInt(((displayHeight - 100) - bubbleHeight) + 1);
-//
-//        // Apply the new layout
-//        pick_btn_container.setLayoutParams(pick_btn_container_layout);
-//
-//        // Create a new bubble object and add that to an arraylist
-//        Bubble pickItem = new Bubble
-//                                (
-//                                        pick_btn_container_layout.topMargin,
-//                                        pick_btn_container_layout.leftMargin,
-//                                        bubbleWidth,
-//                                        bubbleHeight,
-//                                        n.getName(),
-//                                        pick_btn_container_layout
-//                                );
-//
-//
-//        // Create an instance of the collision class
-//        Collision collision = new Collision(pick_items, pickItem, centreBubble);
-//
-//        // If a colission is detected it get's logged and the bubble will be placed
-//        // elsewhere
-//        if (!collision.checkOverlap()) {
-//
-//            Log.wtf("There's overlap for ", n.getName());
-//            if (try_count < 100) {
-//                imgViewEngine(n, mDisplay, pick_items, rootContainer, inflater, try_count + 1,
-//                        centreBubble);
-//                return;
-//            } else {
-//                Log.wtf("Too many faulty placements. This bubble won't be placed: ", n.getName());
-//                return;
-//            }
-//        }
-//
-//        // Add this bubble to the list of already existing bubbles
-//        pick_items.add(pickItem);
-//
-//        // Finished, add the view to the container
-//        rootContainer.addView(pick_btn_container);
-//
-//    }
-
-
-
-//    // Pseudo:
-//    // When placing an element, record the element's position,
-//    // when placing the next element, go through the array of positions
-//    // checking the current element's position against every other position.
-//    // If this element's position is either within positive or negative range
-//    // of (another element's position + or - half of that element's width/height)
-//    // restart,
-//
-//    public void imgViewEngine(String name, RelativeLayout pickBubblesContainer,
-//                              LayoutInflater inflater) {
-//
-//        // Create the image button and establish the size of the display
-//        ImageButton mPickImage = new ImageButton(referenceActivity);
-//        DisplayMetrics metrics = new DisplayMetrics();
-//        referenceActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//
-//        // Make the imagebutton 250dp x 250dp in size
-//        RelativeLayout.LayoutParams larp = new RelativeLayout.LayoutParams(250, 250);
-//
-//
-//        // Randomize the top and left margin of the image button to place it randomly
-//        // on the screen
-//        larp.leftMargin = mPickImage.getWidth()
-//                + new Random().nextInt(metrics.widthPixels - 2 * mPickImage.getWidth());
-//        larp.topMargin = mPickImage.getHeight()
-//                + new Random().nextInt(metrics.heightPixels - 3 * mPickImage.getHeight());
-//        mPickImage.setLayoutParams(larp);
-//
-//        System.out.println("Left margin " + larp.leftMargin);
-//        System.out.println("Top margin " + larp.leftMargin);
-//
-//
-//        // Set the image for the image button
-//        mPickImage.setImageResource(R.drawable.pick_bubble);
-//
-//        // Set the background the same as the rest of the app
-//        mPickImage.setBackgroundColor(getResources().getColor(R.color.btnBackground));
-//
-//        // Set the scaletype to fit_centre to prevent the image from being cut of
-//        mPickImage.setScaleType(ImageButton.ScaleType.FIT_CENTER);
-//
-//        // Add the image to the container
-//        pickBubblesContainer.addView(mPickImage);
-//
-//    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
