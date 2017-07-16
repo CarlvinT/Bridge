@@ -43,7 +43,6 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private LoginTrackerDBHandler mDbHelper;
     private Cursor cursor;
-    private ListView dbEntries;
 
     @Override
     public void onAttach(Context context) {
