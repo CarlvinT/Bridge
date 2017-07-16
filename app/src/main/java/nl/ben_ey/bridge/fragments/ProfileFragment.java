@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import nl.ben_ey.bridge.LoginActivity;
-import nl.ben_ey.bridge.MainActivity;
 import nl.ben_ey.bridge.R;
 import nl.ben_ey.bridge.adapters.LoginsCursorAdapter;
 import nl.ben_ey.bridge.database.LoginTrackerDBHandler;
-import nl.ben_ey.bridge.database.LoginTrackerSchema;
 import nl.ben_ey.bridge.database.LoginTrackerSchema.LoginsTracker;
 
 /**
@@ -63,7 +59,7 @@ public class ProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
@@ -94,7 +90,7 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    private void logoutUser(){
+    private void logoutUser() {
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(listener, "Signed out", Toast.LENGTH_LONG).show();
 
@@ -102,8 +98,7 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    private Cursor callSignIns()
-    {
+    private Cursor callSignIns() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {

@@ -2,7 +2,6 @@ package nl.ben_ey.bridge.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -29,12 +28,10 @@ public class ChatlistFragment extends Fragment {
 
 
     @Override
-    public void onAttach(Context context)
-    {
+    public void onAttach(Context context) {
         // Log.wtf("Ran method", "onAttach");
         super.onAttach(context);
-        if (context instanceof Activity)
-        {
+        if (context instanceof Activity) {
             this.listener = (FragmentActivity) context;
         }
     }
@@ -48,9 +45,9 @@ public class ChatlistFragment extends Fragment {
 
 
         ChatListItem chatListItemData[] = new ChatListItem[]
-        {
-            new ChatListItem("Global Chat", "12", "1455"),
-        };
+                {
+                        new ChatListItem("Global Chat", "12", "1455"),
+                };
 
         ChatListAdapter adapter = new ChatListAdapter(activity, R.layout.listrow, chatListItemData);
 

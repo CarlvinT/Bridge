@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -115,13 +113,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         // Create a new arrayList to be filled with the ChatMessage object
         chatList = new ArrayList<ChatMessage>();
 
-//        chatList.add(new ChatMessage(userOne, userTwo, "She said", "" + random.nextInt(1000), true));
-//        chatList.add(new ChatMessage(userOne, userTwo, "Boii", "" + random.nextInt(1000), true));
-//        chatList.add(new ChatMessage(userOne, userTwo, "Let's not talk too much", "" + random.nextInt(1000), false));
-//        chatList.add(new ChatMessage(userOne, userTwo, "Grab on my waist", "" + random.nextInt(1000), false));
-//        chatList.add(new ChatMessage(userOne, userTwo, "and", "" + random.nextInt(1000), false));
-//        chatList.add(new ChatMessage(userOne, userTwo, "Move that body like this", "" + random.nextInt(1000), true));
-
         // Create new instance of the ChatAdapter class
         chatAdapter = new ChatAdapter(this, chatList);
 
@@ -143,8 +134,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
         final ArrayList<String> msgBlocks = new ArrayList<>();
         final ArrayList<String> senderBlocks = new ArrayList<>();
-
-
 
 
         mDatabaseMessages.addChildEventListener(new ChildEventListener() {
@@ -184,67 +173,12 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
-        /*mDatabaseSenders.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String sender = dataSnapshot.getValue().toString();
-                senderBlocks.add(sender);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        /*int count = 0;
-        for(String msg : msgBlocks) {
-            System.out.println(senderBlocks.get(count) + " sent the following message: " + msg);
-            count++;
-        }
-
-        System.out.println("done");*/
-
-
-
-
     }
 
     // This function will format a ChatMessage object and add it to the adapter
     public void sendTextMessage(View v) {
         FirebaseUser user = mAuth.getCurrentUser();
         uEmail = user.getEmail();
-
-//        String message = msg_input.getEditableText().toString();
-//        if (!message.equalsIgnoreCase("")) {
-//            final ChatMessage chatMessage = new ChatMessage(userOne, userTwo, message,
-//                    "" + random.nextInt(1000), true);
-//            chatMessage.setMsgID();
-//            chatMessage.setBody(message);
-//            chatMessage.setDate(CommonMethods.getCurrentDate());
-//            chatMessage.setTime(CommonMethods.getCurrentTime());
-//            msg_input.setText("");
-//            chatAdapter.add(chatMessage);
-//            chatAdapter.notifyDataSetChanged();
-//
-//            chatList.add(new ChatMessage(userOne, userTwo, message, "" + random.nextInt(1000), true));
-//        }
 
         String message = uEmail + ": " + msg_input.getText().toString().trim();
         mDatabaseFlex = FirebaseDatabase.getInstance().getReference().child("Messages").child("Message");
@@ -258,8 +192,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     // function will be called
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.send_button : sendTextMessage(v);
+        switch (v.getId()) {
+            case R.id.send_button:
+                sendTextMessage(v);
         }
     }
 }

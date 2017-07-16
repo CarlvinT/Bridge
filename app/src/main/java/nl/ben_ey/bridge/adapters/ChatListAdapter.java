@@ -37,14 +37,13 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
     }
 
 
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
         ChatHolder holder = null;
 
         if (row == null) {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new ChatHolder();
@@ -93,8 +92,7 @@ public class ChatListAdapter extends ArrayAdapter<ChatListItem> {
         return row;
     }
 
-    private static class ChatHolder
-    {
+    private static class ChatHolder {
         TextView userName;
         TextView userDistance;
         TextView userLastOnline;

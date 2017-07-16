@@ -13,7 +13,7 @@ public class BtnBounceInterpolator implements android.view.animation.Interpolato
         mFrequency = frequency;
     }
 
-    public float getInterpolation(float time){
+    public float getInterpolation(float time) {
         return (float) (-1 * Math.pow(Math.E, -time / mAmplitude) *
                 Math.cos(mFrequency * time) + 1);
     }

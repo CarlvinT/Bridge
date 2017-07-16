@@ -1,15 +1,12 @@
 package nl.ben_ey.bridge;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,18 +22,16 @@ import java.util.Date;
 import java.util.Locale;
 
 import nl.ben_ey.bridge.database.LoginTrackerDBHandler;
-import nl.ben_ey.bridge.database.LoginTrackerSchema;
 import nl.ben_ey.bridge.database.LoginTrackerSchema.LoginsTracker;
 
 public class LoginActivity extends AppCompatActivity {
 
+    FirebaseUser user;
     private FirebaseAuth mAuth;
     private EditText mEmail;
     private EditText mPassword;
     private Intent i;
     private LoginTrackerDBHandler mDbHelper;
-    FirebaseUser user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +71,9 @@ public class LoginActivity extends AppCompatActivity {
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-        {
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(LoginActivity.this, "Input Email and password", Toast.LENGTH_LONG).show();
-        }
-        else{
+        } else {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -102,13 +95,11 @@ public class LoginActivity extends AppCompatActivity {
                     });
 
 
-
         }
 
     }
 
-    public void registerSignIn()
-    {
+    public void registerSignIn() {
         // Roep de huidige firebase user aan
         FirebaseUser fBuser = mAuth.getCurrentUser();
 

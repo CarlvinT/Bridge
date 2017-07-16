@@ -3,7 +3,6 @@ package nl.ben_ey.bridge;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import nl.ben_ey.bridge.fragments.BubblesFragment;
 import nl.ben_ey.bridge.fragments.ChatlistFragment;
@@ -77,17 +75,16 @@ public class MainActivity extends AppCompatActivity {
         bNavigation.setOnNavigationItemSelectedListener(bottomNavigationListener);
 
 
-
         // Set up font
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                                        .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
-                                        .setFontAttrId(R.attr.fontPath)
-                                        .build()
+                .setDefaultFontPath("fonts/Roboto-RobotoRegular.ttf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
         );
     }
 
     @Override
-    protected void attachBaseContext(Context newBase){
+    protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

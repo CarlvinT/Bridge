@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,8 +20,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -35,8 +32,7 @@ import nl.ben_ey.bridge.animations.BtnBounceInterpolator;
  * Created by Ben on 1-6-2017.
  */
 
-public class    BubblesFragment extends Fragment
-{
+public class BubblesFragment extends Fragment {
     private FragmentActivity listener;
     private View layoutView;
 
@@ -64,24 +60,18 @@ public class    BubblesFragment extends Fragment
     TextView[] bubbles = new TextView[9];
 
 
-
-
-
     @Override
-    public void onAttach(Context context)
-    {
+    public void onAttach(Context context) {
         // Log.wtf("Ran method", "onAttach");
         super.onAttach(context);
-        if (context instanceof Activity)
-        {
+        if (context instanceof Activity) {
             this.listener = (FragmentActivity) context;
         }
     }
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         // Log.wtf("Ran method", "onCreate");
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
@@ -102,8 +92,7 @@ public class    BubblesFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Log.wtf("Ran method", "onCreateView");
 
         // Set the reference activity and inflate the layout for this fragment
@@ -139,41 +128,32 @@ public class    BubblesFragment extends Fragment
                 String data = dataSnapshot.getValue().toString();
 
                 // kijk hier niet het is echt shamefull. moest gedaan worden met een array maar het werkte niet en ik was te lazy om het te doen. -carlvin
-                if (count == 1)
-                {
+                if (count == 1) {
                     user1.setText(data);
                     count = count + 1;
 
-                }
-                else if (count == 2){
+                } else if (count == 2) {
                     user2.setText(data);
                     count = count + 1;
-                }
-                else if (count == 3){
+                } else if (count == 3) {
                     user3.setText(data);
                     count = count + 1;
-                }
-                else if (count == 4){
+                } else if (count == 4) {
                     user4.setText(data);
                     count = count + 1;
-                }
-                else if (count == 5){
+                } else if (count == 5) {
                     user5.setText(data);
                     count = count + 1;
-                }
-                else if (count == 6){
+                } else if (count == 6) {
                     user6.setText(data);
                     count = count + 1;
-                }
-                else if (count == 7){
+                } else if (count == 7) {
                     user7.setText(data);
                     count = count + 1;
-                }
-                else if (count == 8){
+                } else if (count == 8) {
                     user8.setText(data);
                     count = count + 1;
-                }
-                else if(count == 9){
+                } else if (count == 9) {
                     user9.setText(data);
                     count = 0;
                 }
@@ -209,15 +189,13 @@ public class    BubblesFragment extends Fragment
 
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState)
-    {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         // Create an arraylist to house all the buttonpick views
         ArrayList<View> pickBubblesList = new ArrayList<>();
 
         // Get ever child of the bubblesrRoot constraintlayout and put it in the
         // arraylist
-        for (counter = 0; counter < bubblesRoot.getChildCount(); counter++)
-        {
+        for (counter = 0; counter < bubblesRoot.getChildCount(); counter++) {
             pickBubblesList.add(bubblesRoot.getChildAt(counter));
 
             // Set up a randomizer
@@ -225,8 +203,7 @@ public class    BubblesFragment extends Fragment
 
             // Create a bouncing animation with randomized factors for every buttonpick
             // view and apply it
-            for (View btn : pickBubblesList)
-            {
+            for (View btn : pickBubblesList) {
                 Animation pickBtnAnimation = AnimationUtils.loadAnimation(listener,
                         R.anim.bubble_bounce);
 
@@ -236,8 +213,8 @@ public class    BubblesFragment extends Fragment
                 pickBtnAnimation.setInterpolator(interpolator);
                 btn.startAnimation(pickBtnAnimation);
 
-                final ImageButton button = (ImageButton)((ViewGroup) btn).getChildAt(0);
-                final TextView textPlate = (TextView)((ViewGroup) btn).getChildAt(1);
+                final ImageButton button = (ImageButton) ((ViewGroup) btn).getChildAt(0);
+                final TextView textPlate = (TextView) ((ViewGroup) btn).getChildAt(1);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -258,8 +235,7 @@ public class    BubblesFragment extends Fragment
 
 
     @Override
-    public void onDetach()
-    {
+    public void onDetach() {
         // Log.wtf("Ran method", "onDetach");
         super.onDetach();
         this.listener = null;
@@ -268,8 +244,7 @@ public class    BubblesFragment extends Fragment
 
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
+    public void onActivityCreated(Bundle savedInstanceState) {
         // Log.wtf("Ran method", "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }

@@ -6,11 +6,11 @@ import android.provider.BaseColumns;
  * Created by Ben-e on 16-7-2017.
  */
 
-public class LoginTrackerSchema
-{
+public class LoginTrackerSchema {
     // Om te voorkomen dat de klas per ongeluk geïnstantieerd wordt maken we
     // de constructor private
-    private LoginTrackerSchema(){}
+    private LoginTrackerSchema() {
+    }
 
     // Binnenste klas die de tabel uitlegt
     public static class LoginsTracker implements BaseColumns {
