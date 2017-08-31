@@ -6,8 +6,12 @@
           <option name="url" value="https://github.com/CarlvinT/Bridge.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/Otaking64/Care2Move.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="$USER_HOME$/stack/Skol/Block-4/Android/BridgeAppNew" />
+    <option name="cloneParentDir" value="$USER_HOME$/stack/Skol/Block-4/Android/care2move" />
   </component>
 </application>
